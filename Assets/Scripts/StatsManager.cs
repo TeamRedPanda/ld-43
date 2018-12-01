@@ -25,6 +25,18 @@ public class StatsManager
 		Villagers = new List<Villager>();
 	}
 
+    public void Recruit(Villager villager)
+    {
+        Villagers.Add(villager);
+        UpdateStats();
+    }
+
+    public void Sacrifice(int index)
+    {
+        Villagers.RemoveAt(index);
+        UpdateStats();
+    }
+
 	public void UpdateStats()
 	{
 		CalculateTotalStats();
@@ -39,6 +51,10 @@ public class StatsManager
 
 	void CalculateTotalStats()
 	{
+        m_TotalWood  = 0;
+        m_TotalFood  = 0;
+        m_TotalFaith = 0;
+
 		for (int i = 0; i < Villagers.Count; i++) {
 			m_TotalFood  += Villagers[i].FoodProduction;
 			m_TotalWood  += Villagers[i].WoodProduction;

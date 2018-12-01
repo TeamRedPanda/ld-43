@@ -163,20 +163,18 @@ public class EventManager : MonoBehaviour
 
 	void Recruit(Villager villager)
 	{
-		StatsManagerObj.Villagers.Add(villager);
+		StatsManagerObj.Recruit(villager);
 
 		CheckVillageCapacity();
         UpdateResourceView();
-
     }
 
 	void Sacrifice(int index)
 	{
-		StatsManagerObj.Villagers.RemoveAt(index);
+		StatsManagerObj.Sacrifice(index);
 
 		CalculateSacrificePeriod();
         UpdateResourceView();
-
     }
 
 	public void Pause(bool value){
