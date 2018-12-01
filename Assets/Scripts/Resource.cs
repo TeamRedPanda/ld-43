@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class Resource
 { 
-	public float Generation { get; set; }
-    public float Modifier { get; set; }
+	public float Generation;
+    public float Modifier;
 }
