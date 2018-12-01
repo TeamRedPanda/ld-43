@@ -7,7 +7,7 @@ public class StatsManager
 {
 	public List<Villager> Villagers;
 
-	public float Houses = 0.0f;
+	public int Houses = 0;
 	public float FoodProduction = 0.0f;
 	public float WoodProduction = 0.0f;
 	public float FaithProduction = 0.0f;
@@ -46,7 +46,7 @@ public class StatsManager
 
 	void CalculateHouses()
 	{
-		Houses = Mathf.Floor(WoodProduction / 25);
+		Houses = Mathf.CeilToInt(WoodProduction / 25f);
 	}
 
 	void CalculateTotalStats()
