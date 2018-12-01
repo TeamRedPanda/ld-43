@@ -21,7 +21,7 @@ ExportedObj/
 *.unityproj
 *.booproj
 .vs/*
-.vscode\*
+.vscode*
 
 # ============ #
 # OS generated #
