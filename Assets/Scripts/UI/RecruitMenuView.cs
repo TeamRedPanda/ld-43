@@ -4,47 +4,33 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-public class SacrificeMenuView : MonoBehaviour
+public class RecruitMenuView : MonoBehaviour
 {
-    public Text SacrificeCountText;
     public Transform Content;
 
     [SerializeField]
     private GameObject m_VillagerViewPrefab;
 
-    private int m_CurrentSacrificeCount;
-    private int m_SacrificeCount;
-
-    public event Action<int> OnSacrifice;
-    public event Action OnSacrificeFulfill;
+    public event Action<Villager> OnRecruit;
+    public event Action OnRecruitFulfill;
 
     void AddVillagerView(Villager villager, int index)
     {
         VillagerView villagerView = Instantiate(m_VillagerViewPrefab, Content).GetComponent<VillagerView>();
         villagerView.SetStats((int)villager.WoodProduction, (int)villager.FoodProduction, (int)villager.FaithProduction);
         villagerView.Index = index;
-        villagerView.OnActionButton += Sacrifice;
+        villagerView.OnActionButton += (i) => { Recruit(villager); };
     }
 
-    void SetSacrificeCount(int count)
+    void Recruit(Villager villager)
     {
-        m_CurrentSacrificeCount = 0;
-        m_SacrificeCount = count;
-    }
-
-    void Sacrifice(int index)
-    {
-        m_CurrentSacrificeCount++;
-        OnSacrifice?.Invoke(index);
-
-        if (m_CurrentSacrificeCount == m_SacrificeCount)
-            OnSacrificeFulfill?.Invoke();
+        OnRecruit?.Invoke(villager);
     }
 
     public void CloseView()
     {
         Clear();
-        OnSacrificeFulfill?.Invoke();
+        OnRecruitFulfill?.Invoke();
     }
 
     void Clear()

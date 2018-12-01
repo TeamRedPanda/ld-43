@@ -21,7 +21,7 @@ public class VillagerView : MonoBehaviour
         FaithText.text = faith.ToString();
     }
 
-    public void Sacrifice()
+    public void Action()
     {
         OnActionButton?.Invoke(Index);
     }

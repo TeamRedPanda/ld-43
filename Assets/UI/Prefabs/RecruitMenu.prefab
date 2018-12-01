@@ -70,6 +70,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 224274838389370500}
+  - component: {fileID: 114553164986616452}
   m_Layer: 5
   m_Name: RecruitMenu
   m_TagString: Untagged
@@ -282,7 +283,7 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 8a4114e037dacf2488671ca59668638d, type: 2}
+  m_Material: {fileID: 0}
   m_Color: {r: 0.6886792, g: 0.6886792, b: 0.6886792, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -320,6 +321,20 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
+--- !u!114 &114553164986616452
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1459293476405776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30477186ebd5abc4fbbe71a2abb02f0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Content: {fileID: 224884582566029550}
+  m_VillagerViewPrefab: {fileID: 1432645672204168, guid: b13b0f7f0caf79c409a67f672942d655,
+    type: 2}
 --- !u!114 &114807375270094178
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -430,7 +445,7 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1459293476405776}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
