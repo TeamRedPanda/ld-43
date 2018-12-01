@@ -14,10 +14,10 @@ public class StatsManager
 	public float FoodModifier = 0.0f;
 	public float WoodModifier = 0.0f;
 	public float FaithModifier = 0.0f;
+	public float TotalFaith = 0.0f;
 
 	float m_TotalFood = 0.0f;
 	float m_TotalWood = 0.0f;
-	float m_TotalFaith = 0.0f;
 
 	StatsManager(){
 		UpdateStats();
