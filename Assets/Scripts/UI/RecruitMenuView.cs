@@ -18,8 +18,13 @@ public class RecruitMenuView : MonoBehaviour
     {
         VillagerView villagerView = Instantiate(m_VillagerViewPrefab, Content).GetComponent<VillagerView>();
         villagerView.SetStats((int)villager.WoodProduction, (int)villager.FoodProduction, (int)villager.FaithProduction);
-        villagerView.Index = index;
         villagerView.OnActionButton += (i) => { Recruit(villager); };
+    }
+
+    public void AddVillagerViews(Villager[] villagers)
+    {
+        foreach (var villager in villagers)
+            AddVillagerView(villager);
     }
 
     void Recruit(Villager villager)
