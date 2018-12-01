@@ -50,7 +50,7 @@ public class EventManager : MonoBehaviour
 	}
 
 	void CalculateSacrificePeriod(){
-		Mathf.Min(12, 3 + Mathf.Floor(StatsManagerObj.TotalFaith / 30));
+		Mathf.Min(12, 3 + Mathf.Floor(StatsManagerObj.FaithProduction / 30));
 	}
 
 	void CheckVillageCapacity(){
