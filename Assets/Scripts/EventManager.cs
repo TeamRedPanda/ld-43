@@ -18,7 +18,7 @@ public class EventManager : MonoBehaviour
 	public GameObject SacrificeMenu;
 	public Transform Canvas;
 
-	bool pause = true;
+	bool pause = false;
 
 	float m_VillagerLimit;
 	float m_MaxSacrifices;
@@ -32,8 +32,11 @@ public class EventManager : MonoBehaviour
 		CalculateSacrificePeriod();
 		CalculateLimits();
 		CheckVillageCapacity();
-		
+
+        NextArrival = ArrivalPeriod;
 		NextSacrifice = (ActualMonth + SacrificePeriod) % 12;
+
+        StartTime = PassageTime;
 	}
 
 	void Update()
