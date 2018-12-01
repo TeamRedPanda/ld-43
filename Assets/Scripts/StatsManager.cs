@@ -19,7 +19,7 @@ public class StatsManager
 	float m_TotalFood = 0.0f;
 	float m_TotalWood = 0.0f;
 
-	StatsManager(){
+	public StatsManager(){
 		Villagers = new List<Villager>();
 	}
 

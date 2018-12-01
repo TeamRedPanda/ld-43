@@ -36,7 +36,7 @@ public class EventManager : MonoBehaviour
 				Debug.Log("Open sacrifice UI");
 
 			if(Time.deltaTime == NextArrival)
-				Debug.Log("Open recruit UI")
+				Debug.Log("Open recruit UI");
 		}
 	}
 
@@ -61,11 +61,11 @@ public class EventManager : MonoBehaviour
 	}
 
 	public void Recruit(){
-		Debug.Log("To be implemented after UI")
+		Debug.Log("To be implemented after UI");
 	}
 
 	public void Sacrifice(int index){
 		StatsManagerObj.Villagers.RemoveAt(index);
-		Debug.Log("Needs to implement an option of more then one sacrifice")
+		Debug.Log("Needs to implement an option of more then one sacrifice");
 	}
 }
