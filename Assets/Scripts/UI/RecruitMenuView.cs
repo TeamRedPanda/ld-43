@@ -14,7 +14,7 @@ public class RecruitMenuView : MonoBehaviour
     public event Action<Villager> OnRecruit;
     public event Action OnRecruitFulfill;
 
-    void AddVillagerView(Villager villager, int index)
+    public void AddVillagerView(Villager villager)
     {
         VillagerView villagerView = Instantiate(m_VillagerViewPrefab, Content).GetComponent<VillagerView>();
         villagerView.SetStats((int)villager.WoodProduction, (int)villager.FoodProduction, (int)villager.FaithProduction);
