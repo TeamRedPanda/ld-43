@@ -31,9 +31,9 @@ public class StatsManager
         UpdateStats();
     }
 
-    public void Sacrifice(int index)
+    public void Sacrifice(Villager villager)
     {
-        Villagers.RemoveAt(index);
+        Villagers.Remove(villager);
         UpdateStats();
     }
 

@@ -76,7 +76,7 @@ public class EventManager : MonoBehaviour
 
 				sacrificeView.SetSacrificeCount((int)m_MaxSacrifices);
 				sacrificeView.OnSacrifice += Sacrifice;
-				sacrificeView.OnSacrificeFulfill += () => Pause(false);
+                sacrificeView.OnSacrificeFulfill += () => { Pause(false); CalculateSacrificePeriod(); m_NextSacrifice = (m_CurrentMonth + SacrificePeriod) % 12; };
 			}
 
 			if (m_CurrentMonth == m_NextArrival) {
@@ -87,7 +87,7 @@ public class EventManager : MonoBehaviour
 				RecruitMenuView recruitView = Instantiate(RecruitMenu, Canvas).GetComponent<RecruitMenuView>();
 				recruitView.AddVillagerViews(arrivals);
 				recruitView.OnRecruit += Recruit;
-				recruitView.OnRecruitFulfill += () => Pause(false);
+                recruitView.OnRecruitFulfill += () => { Pause(false); CheckVillageCapacity(); };
 			}
 		}
 	}
@@ -150,15 +150,15 @@ public class EventManager : MonoBehaviour
 
 	void CalculateSacrificePeriod()
 	{
-		Mathf.Min(12, 3 + Mathf.Floor(StatsManagerObj.FaithProduction / 30));
+		SacrificePeriod = Mathf.Min(12, 3 + Mathf.Floor(StatsManagerObj.FaithProduction / 30));
 	}
 
 	void CheckVillageCapacity()
 	{
-		if (StatsManagerObj.Villagers.Count < m_VillagerLimit)
+		//if (StatsManagerObj.Villagers.Count < m_VillagerLimit)
 			m_NextArrival = (m_CurrentMonth + ArrivalPeriod) % 12;
-		else
-			m_NextArrival = 0;
+		//else
+		//	m_NextArrival = 0;
 	}
 
 	void Recruit(Villager villager)
@@ -169,9 +169,9 @@ public class EventManager : MonoBehaviour
         UpdateResourceView();
     }
 
-	void Sacrifice(int index)
+	void Sacrifice(Villager villager)
 	{
-		StatsManagerObj.Sacrifice(index);
+		StatsManagerObj.Sacrifice(villager);
 
 		CalculateSacrificePeriod();
         UpdateResourceView();
