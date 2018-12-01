@@ -38,13 +38,15 @@ public class SacrificeMenuView : MonoBehaviour
         OnSacrifice?.Invoke(index);
 
         if (m_CurrentSacrificeCount == m_SacrificeCount)
-            OnSacrificeFulfill?.Invoke();
+        {
+            CloseView();
+        }
     }
 
     public void CloseView()
     {
-        Clear();
         OnSacrificeFulfill?.Invoke();
+        Clear();
     }
 
     void Clear()
