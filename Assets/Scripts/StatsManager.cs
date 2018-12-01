@@ -37,13 +37,13 @@ public class StatsManager
 		for (int i = 0; i < Villagers.Count; i++){
 			m_TotalFood  += Villagers[i].FoodProduction;
 			m_TotalWood  += Villagers[i].WoodProduction;
-			m_TotalFaith += Villagers[i].FaithProduction;
+			TotalFaith += Villagers[i].FaithProduction;
 		}
 	}
 
 	void CalculateProductions(){
 		FoodProduction  = m_TotalFood  * FoodModifier;
 		WoodProduction  = m_TotalWood  * WoodModifier;
-		FaithProduction = m_TotalFaith * FaithModifier;
+		FaithProduction = TotalFaith * FaithModifier;
 	}
 }
