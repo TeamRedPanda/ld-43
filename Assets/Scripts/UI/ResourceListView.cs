@@ -9,6 +9,8 @@ public class ResourceListView : MonoBehaviour
     public Text FoodValue;
     public Text FaithValue;
 
+    public Text Date;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -16,6 +18,6 @@ public class ResourceListView : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
 }
