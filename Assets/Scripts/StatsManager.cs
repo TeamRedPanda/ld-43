@@ -38,7 +38,7 @@ public class StatsManager
 
 	void CalculateTotalStats()
 	{
-		for (int i = 0; i < Villagers.Count; i++){
+		for (int i = 0; i < Villagers.Count; i++) {
 			m_TotalFood  += Villagers[i].FoodProduction;
 			m_TotalWood  += Villagers[i].WoodProduction;
 			m_TotalFaith += Villagers[i].FaithProduction;
