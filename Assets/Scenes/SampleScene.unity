@@ -525,7 +525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6704155f664f96d41a5b41e764d65dbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SecondsPerMonth: 60
+  SecondsPerMonth: 3
   SacrificePeriod: 7
   ArrivalPeriod: 3
   RecruitMenu: {fileID: 1459293476405776, guid: eb79c7668afd046448582512e1eb61cb,
@@ -533,6 +533,7 @@ MonoBehaviour:
   SacrificeMenu: {fileID: 1128501592346736, guid: e1cfd34472a823149b19205e7add82db,
     type: 2}
   Canvas: {fileID: 1867408339}
+  m_ResourceListView: {fileID: 2106705447}
 --- !u!4 &1007252087
 Transform:
   m_ObjectHideFlags: 0
@@ -1441,11 +1442,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcf6aab4f337e9a48bdd1e078dc4bcfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WoodText: {fileID: 0}
-  FoodText: {fileID: 0}
-  FaithText: {fileID: 0}
-  PopulationText: {fileID: 0}
-  DateText: {fileID: 0}
+  WoodText: {fileID: 635648558}
+  FoodText: {fileID: 1264539513}
+  FaithText: {fileID: 1391086514}
+  PopulationText: {fileID: 1957920968}
+  DateText: {fileID: 1875811197}
 --- !u!114 &2106705448
 MonoBehaviour:
   m_ObjectHideFlags: 0

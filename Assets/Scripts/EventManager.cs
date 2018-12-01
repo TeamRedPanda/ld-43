@@ -20,6 +20,9 @@ public class EventManager : MonoBehaviour
 	public GameObject SacrificeMenu;
 	public Transform Canvas;
 
+    [SerializeField]
+    private ResourceListView m_ResourceListView;
+
 	bool pause = false;
 
 	float m_VillagerLimit;
@@ -42,37 +45,38 @@ public class EventManager : MonoBehaviour
 	}
 
 	void Update()
-	{	
-		if (pause == false) {
-			CurrentMonthTimeRemaining -= Time.deltaTime;
-			if (CurrentMonthTimeRemaining <= 0) {
-				CurrentMonth = (CurrentMonth + 1) % 12;
-				CurrentMonthTimeRemaining = SecondsPerMonth;
+	{
+        if (pause)
+            return;
 
-				if (CurrentMonth == NextSacrifice) {
-					pause = true;
+		CurrentMonthTimeRemaining -= Time.deltaTime;
+		if (CurrentMonthTimeRemaining <= 0) {
+			CurrentMonth = (CurrentMonth + 1) % 12;
+			CurrentMonthTimeRemaining = SecondsPerMonth;
 
-					SacrificeMenuView sacrificeView = Instantiate(SacrificeMenu, Canvas).GetComponent<SacrificeMenuView>();
+			if (CurrentMonth == NextSacrifice) {
+				pause = true;
 
-					for (int i = 0; i < StatsManagerObj.Villagers.Count; i++) {
-						sacrificeView.AddVillagerView(StatsManagerObj.Villagers[i], i);
-					}
+				SacrificeMenuView sacrificeView = Instantiate(SacrificeMenu, Canvas).GetComponent<SacrificeMenuView>();
 
-					sacrificeView.SetSacrificeCount((int)m_MaxSacrifices);
-					sacrificeView.OnSacrifice += Sacrifice;
-					sacrificeView.OnSacrificeFulfill += () => Pause(false);
+				for (int i = 0; i < StatsManagerObj.Villagers.Count; i++) {
+					sacrificeView.AddVillagerView(StatsManagerObj.Villagers[i], i);
 				}
 
-				if (CurrentMonth == NextArrival) {
-					pause = true;
+				sacrificeView.SetSacrificeCount((int)m_MaxSacrifices);
+				sacrificeView.OnSacrifice += Sacrifice;
+				sacrificeView.OnSacrificeFulfill += () => Pause(false);
+			}
 
-					Villager[] arrivals = GenerateVillagers();
+			if (CurrentMonth == NextArrival) {
+				pause = true;
 
-					RecruitMenuView recruitView = Instantiate(RecruitMenu, Canvas).GetComponent<RecruitMenuView>();
-					recruitView.AddVillagerViews(arrivals);
-					recruitView.OnRecruit += Recruit;
-					recruitView.OnRecruitFulfill += () => Pause(false);
-				}
+				Villager[] arrivals = GenerateVillagers();
+
+				RecruitMenuView recruitView = Instantiate(RecruitMenu, Canvas).GetComponent<RecruitMenuView>();
+				recruitView.AddVillagerViews(arrivals);
+				recruitView.OnRecruit += Recruit;
+				recruitView.OnRecruitFulfill += () => Pause(false);
 			}
 		}
 	}
