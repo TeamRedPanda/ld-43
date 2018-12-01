@@ -157,7 +157,7 @@ public class EventManager : MonoBehaviour
 	void CalculateLimits()
 	{
 		m_VillagerLimit = Mathf.Min(StatsManagerObj.Houses * 4, Mathf.Floor(StatsManagerObj.FoodProduction / 15));
-		m_MaxSacrifices = Mathf.Min(4, Mathf.Floor(StatsManagerObj.Villagers.Count / 4));
+		m_MaxSacrifices = Mathf.Max(1, Mathf.Min(8, Mathf.Floor(StatsManagerObj.Villagers.Count / 4)));
         
 	}
 
