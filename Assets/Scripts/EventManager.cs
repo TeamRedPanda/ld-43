@@ -11,7 +11,8 @@ public class EventManager : MonoBehaviour
 	private float m_CurrentMonthTimeRemaining = 60;
 	private int m_CurrentMonth = 0;
 
-	public float SacrificePeriod = 6;
+	public float SacrificePeriodBase = 6;
+    private float SacrificePeriod;
     private float m_NextSacrifice;
 
 	public float ArrivalPeriod = 3;
@@ -24,7 +25,13 @@ public class EventManager : MonoBehaviour
     [SerializeField]
     private ResourceListView m_ResourceListView;
 
-	private bool m_IsPaused = false;
+	private bool m_IsPaused {
+        get {
+            return m_WindowsOpen != 0;
+        }
+    }
+
+    private int m_WindowsOpen = 0;
 
 	float m_VillagerLimit;
 	float m_MaxSacrifices;
@@ -66,7 +73,7 @@ public class EventManager : MonoBehaviour
 			m_CurrentMonthTimeRemaining = SecondsPerMonth;
 
 			if (m_CurrentMonth == m_NextSacrifice) {
-				m_IsPaused = true;
+				m_WindowsOpen++;
 
 				SacrificeMenuView sacrificeView = Instantiate(SacrificeMenu, Canvas).GetComponent<SacrificeMenuView>();
 
@@ -76,18 +83,23 @@ public class EventManager : MonoBehaviour
 
 				sacrificeView.SetSacrificeCount((int)m_MaxSacrifices);
 				sacrificeView.OnSacrifice += Sacrifice;
-                sacrificeView.OnSacrificeFulfill += () => { Pause(false); CalculateSacrificePeriod(); m_NextSacrifice = (m_CurrentMonth + SacrificePeriod) % 12; };
+                sacrificeView.OnSacrificeFulfill += () => {
+                    Pause(false);
+                    CalculateSacrificePeriod();
+                    m_NextSacrifice = (m_CurrentMonth + SacrificePeriod) % 12;
+                    m_WindowsOpen--;
+                };
 			}
 
 			if (m_CurrentMonth == m_NextArrival) {
-				m_IsPaused = true;
+                m_WindowsOpen++;
 
-				Villager[] arrivals = GenerateVillagers();
+                Villager[] arrivals = GenerateVillagers();
 
 				RecruitMenuView recruitView = Instantiate(RecruitMenu, Canvas).GetComponent<RecruitMenuView>();
 				recruitView.AddVillagerViews(arrivals);
 				recruitView.OnRecruit += Recruit;
-                recruitView.OnRecruitFulfill += () => { Pause(false); CheckVillageCapacity(); };
+                recruitView.OnRecruitFulfill += () => { Pause(false); CheckVillageCapacity(); m_WindowsOpen--; };
 			}
 		}
 	}
@@ -146,11 +158,12 @@ public class EventManager : MonoBehaviour
 	{
 		m_VillagerLimit = Mathf.Min(StatsManagerObj.Houses * 4, Mathf.Floor(StatsManagerObj.FoodProduction / 15));
 		m_MaxSacrifices = Mathf.Min(4, Mathf.Floor(StatsManagerObj.Villagers.Count / 4));
+        
 	}
 
 	void CalculateSacrificePeriod()
 	{
-		SacrificePeriod = Mathf.Min(12, 3 + Mathf.Floor(StatsManagerObj.FaithProduction / 30));
+		SacrificePeriod = Mathf.Min(12, SacrificePeriodBase + Mathf.Floor(StatsManagerObj.FaithProduction / 30));
 	}
 
 	void CheckVillageCapacity()
@@ -178,6 +191,6 @@ public class EventManager : MonoBehaviour
     }
 
 	public void Pause(bool value){
-		m_IsPaused = value;
+		//m_IsPaused = value;
 	}
 }
