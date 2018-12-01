@@ -1393,10 +1393,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcf6aab4f337e9a48bdd1e078dc4bcfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WoodValue: {fileID: 635648558}
-  FoodValue: {fileID: 1264539513}
-  FaithValue: {fileID: 1391086514}
-  Date: {fileID: 1875811197}
+  WoodText: {fileID: 0}
+  FoodText: {fileID: 0}
+  FaithText: {fileID: 0}
+  PopulationText: {fileID: 0}
+  DateText: {fileID: 0}
 --- !u!114 &2106705448
 MonoBehaviour:
   m_ObjectHideFlags: 0
