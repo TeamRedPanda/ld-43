@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class StatsManager
 {
 	public List<Villager> Villagers;
@@ -11,9 +12,9 @@ public class StatsManager
 	public float WoodProduction = 0.0f;
 	public float FaithProduction = 0.0f;
 
-	public float FoodModifier = 0.0f;
-	public float WoodModifier = 0.0f;
-	public float FaithModifier = 0.0f;
+	public float FoodModifier = 1.0f;
+	public float WoodModifier = 1.0f;
+	public float FaithModifier = 1.0f;
 
 	float m_TotalFood = 0.0f;
 	float m_TotalWood = 0.0f;
