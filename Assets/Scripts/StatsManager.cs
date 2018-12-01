@@ -23,7 +23,7 @@ public class StatsManager
 		Villagers = new List<Villager>();
 	}
 
-	void UpdateStats(){
+	public void UpdateStats(){
 		CalculateTotalStats();
 		CalculateProductions();
 		CalculateHouses();
