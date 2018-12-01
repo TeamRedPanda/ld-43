@@ -20,7 +20,7 @@ public class StatsManager
 	float m_TotalWood = 0.0f;
 
 	StatsManager(){
-		UpdateStats();
+		Villagers = new List<Villager>();
 	}
 
 	void UpdateStats(){
