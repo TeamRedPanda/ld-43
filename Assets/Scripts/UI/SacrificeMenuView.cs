@@ -18,7 +18,7 @@ public class SacrificeMenuView : MonoBehaviour
     public event Action<int> OnSacrifice;
     public event Action OnSacrificeFulfill;
 
-    void AddVillagerView(Villager villager, int index)
+    public void AddVillagerView(Villager villager, int index)
     {
         VillagerView villagerView = Instantiate(m_VillagerViewPrefab, Content).GetComponent<VillagerView>();
         villagerView.SetStats((int)villager.WoodProduction, (int)villager.FoodProduction, (int)villager.FaithProduction);
@@ -26,7 +26,7 @@ public class SacrificeMenuView : MonoBehaviour
         villagerView.OnActionButton += Sacrifice;
     }
 
-    void SetSacrificeCount(int count)
+    public void SetSacrificeCount(int count)
     {
         m_CurrentSacrificeCount = 0;
         m_SacrificeCount = count;
