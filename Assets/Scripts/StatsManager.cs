@@ -19,21 +19,25 @@ public class StatsManager
 	float m_TotalFood = 0.0f;
 	float m_TotalWood = 0.0f;
 
-	public StatsManager(){
+	public StatsManager()
+	{
 		Villagers = new List<Villager>();
 	}
 
-	public void UpdateStats(){
+	public void UpdateStats()
+	{
 		CalculateTotalStats();
 		CalculateProductions();
 		CalculateHouses();
 	}
 
-	void CalculateHouses(){
+	void CalculateHouses()
+	{
 		Houses = Mathf.Floor(WoodProduction / 25);
 	}
 
-	void CalculateTotalStats(){
+	void CalculateTotalStats()
+	{
 		for (int i = 0; i < Villagers.Count; i++){
 			m_TotalFood  += Villagers[i].FoodProduction;
 			m_TotalWood  += Villagers[i].WoodProduction;
@@ -41,7 +45,8 @@ public class StatsManager
 		}
 	}
 
-	void CalculateProductions(){
+	void CalculateProductions()
+	{
 		FoodProduction  = m_TotalFood  * FoodModifier;
 		WoodProduction  = m_TotalWood  * WoodModifier;
 		FaithProduction = TotalFaith * FaithModifier;
