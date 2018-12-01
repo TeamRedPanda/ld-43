@@ -525,8 +525,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6704155f664f96d41a5b41e764d65dbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SecondsPerMonth: 3
-  SacrificePeriod: 7
+  StatsManagerObj:
+    Houses: 0
+    FoodProduction: 0
+    WoodProduction: 0
+    FaithProduction: 0
+    FoodModifier: 1
+    WoodModifier: 1
+    FaithModifier: 1
+  SecondsPerMonth: 1
+  SacrificePeriodBase: 6
   ArrivalPeriod: 3
   RecruitMenu: {fileID: 1459293476405776, guid: eb79c7668afd046448582512e1eb61cb,
     type: 2}
