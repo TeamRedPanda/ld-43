@@ -8,64 +8,152 @@ public class EventManager : MonoBehaviour
 
 	public float SacrificePeriod;
 	public float NextArrival;
-	public float StartTime;
-	public float NextMonth;
+	public float ArrivalPeriod = 3;
+	public float StartTime = 60;
+	public float PassageTime = 60;
+	public float ActualMonth = 0;
 	public float NextSacrifice;
+
+	public GameObject RecruitMenu;
+	public GameObject SacrificeMenu;
+	public Transform Canvas;
+
+	bool pause = true;
 
 	float m_VillagerLimit;
 	float m_MaxSacrifices;
 
-	void Start(){
+	void Start()
+	{
 		StatsManagerObj = new StatsManager();
 		GetInitialState();
-
-		StartTime = Time.deltaTime;
-		NextMonth = StartTime + 60;
 
 		StatsManagerObj.UpdateStats();
 		CalculateSacrificePeriod();
 		CalculateLimits();
-
-		NextSacrifice = StartTime + SacrificePeriod;
 		CheckVillageCapacity();
+		
+		NextSacrifice = (ActualMonth + SacrificePeriod) % 12;
 	}
 
-	void Update(){
-		if (Time.deltaTime == NextMonth){
-			if(Time.deltaTime == NextSacrifice)
-				Debug.Log("Open sacrifice UI");
+	void Update()
+	{	
+		if (pause == false) {
+			StartTime -= Time.deltaTime;
+			if (StartTime <= 0) {
+				ActualMonth = (ActualMonth + 1) % 12;
+				StartTime = PassageTime;
 
-			if(Time.deltaTime == NextArrival)
-				Debug.Log("Open recruit UI");
+				if (ActualMonth == NextSacrifice) {
+					pause = true;
+
+					SacrificeMenuView sacrificeView = Instantiate(SacrificeMenu, Canvas).GetComponent<SacrificeMenuView>();
+
+					for (int i = 0; i < StatsManagerObj.Villagers.Count; i++) {
+						sacrificeView.AddVillagerView(StatsManagerObj.Villagers[i], i);
+					}
+
+					sacrificeView.SetSacrificeCount((int)m_MaxSacrifices);
+					sacrificeView.OnSacrifice += Sacrifice;
+					sacrificeView.OnSacrificeFulfill += () => Pause(false);
+				}
+
+				if (ActualMonth == NextArrival) {
+					pause = true;
+
+					Villager[] arrivals = GenerateVillagers();
+
+					RecruitMenuView recruitView = Instantiate(RecruitMenu, Canvas).GetComponent<RecruitMenuView>();
+					recruitView.AddVillagerViews(arrivals);
+					recruitView.OnRecruit += Recruit;
+					recruitView.OnRecruitFulfill += () => Pause(false);
+				}
+			}
 		}
 	}
 
-	void GetInitialState(){
-		Debug.Log("Open recruit UI");
+	void GetInitialState()
+	{
+		Villager villager1 = new Villager();
+		Villager villager2 = new Villager();
+
+		villager1.FoodProduction  = 5;
+		villager1.WoodProduction  = 5;
+		villager1.FaithProduction = 5;
+
+		villager2.FoodProduction  = 6;
+		villager2.WoodProduction  = 6;
+		villager2.FaithProduction = 6;
+
+		StatsManagerObj.Villagers.Add(villager1);
+		StatsManagerObj.Villagers.Add(villager2);
 	}
 
-	void CalculateLimits(){
+	Villager[] GenerateVillagers()
+	{
+		int arrivalCount = Random.Range(1, 3);
+		List<Villager> arrivalsChoices = new List<Villager>();
+
+		for (int i = 0; i < arrivalCount; i++) {
+			arrivalsChoices[i] = new Villager();
+			GenerateStat(arrivalsChoices[i]);
+		}
+
+		return arrivalsChoices.ToArray();
+	}
+
+	void GenerateStat(Villager villager)
+	{
+		villager.FoodProduction = Random.Range(
+			         Mathf.Min(0 + Mathf.Floor(100 / StatsManagerObj.FoodProduction), 5), 
+		             Mathf.Max(10 - Mathf.Floor(StatsManagerObj.FoodProduction / 100), 5)
+					 );
+		
+		villager.WoodProduction = Random.Range(
+			         Mathf.Min(0 + Mathf.Floor(100 / StatsManagerObj.WoodProduction), 5), 
+		             Mathf.Max(10 - Mathf.Floor(StatsManagerObj.WoodProduction / 100), 5)
+					 );
+		
+		villager.FaithProduction = Random.Range(
+			         Mathf.Min(0 + Mathf.Floor(100 / StatsManagerObj.FaithProduction), 5), 
+		             Mathf.Max(10 - Mathf.Floor(StatsManagerObj.FaithProduction / 100), 5)
+					 );
+	}
+
+	void CalculateLimits()
+	{
 		m_VillagerLimit = Mathf.Min(StatsManagerObj.Houses * 4, Mathf.Floor(StatsManagerObj.FoodProduction / 15));
 		m_MaxSacrifices = Mathf.Min(4, Mathf.Floor(StatsManagerObj.Villagers.Count / 4));
 	}
 
-	void CalculateSacrificePeriod(){
+	void CalculateSacrificePeriod()
+	{
 		Mathf.Min(12, 3 + Mathf.Floor(StatsManagerObj.FaithProduction / 30));
 	}
 
-	void CheckVillageCapacity(){
+	void CheckVillageCapacity()
+	{
 		if (StatsManagerObj.Villagers.Count < m_VillagerLimit)
-			NextArrival = StartTime + 180;
+			NextArrival = (ActualMonth + ArrivalPeriod) % 12;
 		else
 			NextArrival = 0;
 	}
 
-	public void Recruit(){
-		Debug.Log("To be implemented after UI");
+	void Recruit(Villager villager)
+	{
+		StatsManagerObj.Villagers.Add(villager);
+
+		CheckVillageCapacity();
 	}
 
-	public void Sacrifice(int index){
+	void Sacrifice(int index)
+	{
 		StatsManagerObj.Villagers.RemoveAt(index);
-		Debug.Log("Needs to implement an option of more then one sacrifice");
+
+		CalculateSacrificePeriod();
+	}
+
+	public void Pause(bool value){
+		pause = value;
 	}
 }
