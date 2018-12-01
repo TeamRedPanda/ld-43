@@ -10,9 +10,10 @@ public class EventManager : MonoBehaviour
 	public float SecondsPerMonth = 60;
 	private float m_CurrentMonthTimeRemaining = 60;
 	private int m_CurrentMonth = 0;
+    private int m_CurrentYear = 1501;
 
 	public float SacrificePeriodBase = 6;
-    private float SacrificePeriod;
+    private float m_SacrificePeriod;
     private float m_NextSacrifice;
 
 	public float ArrivalPeriod = 3;
@@ -48,7 +49,7 @@ public class EventManager : MonoBehaviour
         UpdateResourceView();
 
         m_NextArrival = ArrivalPeriod;
-		m_NextSacrifice = (m_CurrentMonth + SacrificePeriod) % 12;
+		m_NextSacrifice = (m_CurrentMonth + m_SacrificePeriod) % 12;
 
         m_CurrentMonthTimeRemaining = SecondsPerMonth;
 	}
@@ -68,39 +69,47 @@ public class EventManager : MonoBehaviour
 
 		m_CurrentMonthTimeRemaining -= Time.deltaTime;
 		if (m_CurrentMonthTimeRemaining <= 0) {
+            if (m_CurrentMonth == 11)
+                m_CurrentYear++;
+
 			m_CurrentMonth = (m_CurrentMonth + 1) % 12;
-            m_ResourceListView.UpdateDate(m_CurrentMonth, 1501); // TODO: WE NEED YEARS!!!!
+            m_ResourceListView.UpdateDate(m_CurrentMonth, m_CurrentYear); // TODO: WE NEED YEARS!!!!
 			m_CurrentMonthTimeRemaining = SecondsPerMonth;
 
-			if (m_CurrentMonth == m_NextSacrifice) {
-				m_WindowsOpen++;
+            StatsManagerObj.UpdateStats();
+            CalculateSacrificePeriod();
+            CalculateLimits();
+            UpdateResourceView();
+        }
 
-				SacrificeMenuView sacrificeView = Instantiate(SacrificeMenu, Canvas).GetComponent<SacrificeMenuView>();
+		if (m_CurrentMonth == m_NextSacrifice) {
+			m_WindowsOpen++;
 
-				for (int i = 0; i < StatsManagerObj.Villagers.Count; i++) {
-					sacrificeView.AddVillagerView(StatsManagerObj.Villagers[i], i);
-				}
+			SacrificeMenuView sacrificeView = Instantiate(SacrificeMenu, Canvas).GetComponent<SacrificeMenuView>();
 
-				sacrificeView.SetSacrificeCount((int)m_MaxSacrifices);
-				sacrificeView.OnSacrifice += Sacrifice;
-                sacrificeView.OnSacrificeFulfill += () => {
-                    Pause(false);
-                    CalculateSacrificePeriod();
-                    m_NextSacrifice = (m_CurrentMonth + SacrificePeriod) % 12;
-                    m_WindowsOpen--;
-                };
+			for (int i = 0; i < StatsManagerObj.Villagers.Count; i++) {
+				sacrificeView.AddVillagerView(StatsManagerObj.Villagers[i], i);
 			}
 
-			if (m_CurrentMonth == m_NextArrival) {
-                m_WindowsOpen++;
+			sacrificeView.SetSacrificeCount((int)m_MaxSacrifices);
+			sacrificeView.OnSacrifice += Sacrifice;
+            sacrificeView.OnSacrificeFulfill += () => {
+                Pause(false);
+                CalculateSacrificePeriod();
+                m_NextSacrifice = (m_CurrentMonth + m_SacrificePeriod) % 12;
+                m_WindowsOpen--;
+            };
+		}
 
-                Villager[] arrivals = GenerateVillagers();
+		if (m_CurrentMonth == m_NextArrival) {
+            m_WindowsOpen++;
 
-				RecruitMenuView recruitView = Instantiate(RecruitMenu, Canvas).GetComponent<RecruitMenuView>();
-				recruitView.AddVillagerViews(arrivals);
-				recruitView.OnRecruit += Recruit;
-                recruitView.OnRecruitFulfill += () => { Pause(false); CheckVillageCapacity(); m_WindowsOpen--; };
-			}
+            Villager[] arrivals = GenerateVillagers();
+
+			RecruitMenuView recruitView = Instantiate(RecruitMenu, Canvas).GetComponent<RecruitMenuView>();
+			recruitView.AddVillagerViews(arrivals);
+			recruitView.OnRecruit += Recruit;
+            recruitView.OnRecruitFulfill += () => { Pause(false); CheckVillageCapacity(); m_WindowsOpen--; };
 		}
 	}
 
@@ -156,14 +165,14 @@ public class EventManager : MonoBehaviour
 
 	void CalculateLimits()
 	{
-		m_VillagerLimit = Mathf.Min(StatsManagerObj.Houses * 4, Mathf.Floor(StatsManagerObj.FoodProduction / 15));
-		m_MaxSacrifices = Mathf.Max(1, Mathf.Min(8, 1 + Mathf.Floor(StatsManagerObj.Villagers.Count / 4)));
+		m_VillagerLimit = Mathf.Min(StatsManagerObj.Houses * 4, Mathf.Floor(StatsManagerObj.FoodProduction / 15f));
+		m_MaxSacrifices = Mathf.Max(1, Mathf.Min(8, 1 + Mathf.Floor(StatsManagerObj.Villagers.Count / 4f)));
         
 	}
 
 	void CalculateSacrificePeriod()
 	{
-		SacrificePeriod = Mathf.Min(12, SacrificePeriodBase + Mathf.Floor(StatsManagerObj.FaithProduction / 30));
+		m_SacrificePeriod = Mathf.Min(12, SacrificePeriodBase + Mathf.Floor(StatsManagerObj.FaithProduction / 30f));
 	}
 
 	void CheckVillageCapacity()
