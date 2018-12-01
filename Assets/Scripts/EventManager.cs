@@ -6,15 +6,17 @@ public class EventManager : MonoBehaviour
 {
 	StatsManager StatsManagerObj;
 
-	public float SacrificePeriod;
-	public float NextArrival;
-	public float ArrivalPeriod = 3;
-	public float StartTime = 60;
-	public float PassageTime = 60;
-	public float ActualMonth = 0;
-	public float NextSacrifice;
+	public float SecondsPerMonth = 60;
+	private float CurrentMonthTimeRemaining = 60;
+	private float CurrentMonth = 0;
 
-	public GameObject RecruitMenu;
+	public float SacrificePeriod = 6;
+    private float NextSacrifice;
+
+	public float ArrivalPeriod = 3;
+	private float NextArrival;
+
+    public GameObject RecruitMenu;
 	public GameObject SacrificeMenu;
 	public Transform Canvas;
 
@@ -34,20 +36,20 @@ public class EventManager : MonoBehaviour
 		CheckVillageCapacity();
 
         NextArrival = ArrivalPeriod;
-		NextSacrifice = (ActualMonth + SacrificePeriod) % 12;
+		NextSacrifice = (CurrentMonth + SacrificePeriod) % 12;
 
-        StartTime = PassageTime;
+        CurrentMonthTimeRemaining = SecondsPerMonth;
 	}
 
 	void Update()
 	{	
 		if (pause == false) {
-			StartTime -= Time.deltaTime;
-			if (StartTime <= 0) {
-				ActualMonth = (ActualMonth + 1) % 12;
-				StartTime = PassageTime;
+			CurrentMonthTimeRemaining -= Time.deltaTime;
+			if (CurrentMonthTimeRemaining <= 0) {
+				CurrentMonth = (CurrentMonth + 1) % 12;
+				CurrentMonthTimeRemaining = SecondsPerMonth;
 
-				if (ActualMonth == NextSacrifice) {
+				if (CurrentMonth == NextSacrifice) {
 					pause = true;
 
 					SacrificeMenuView sacrificeView = Instantiate(SacrificeMenu, Canvas).GetComponent<SacrificeMenuView>();
@@ -61,7 +63,7 @@ public class EventManager : MonoBehaviour
 					sacrificeView.OnSacrificeFulfill += () => Pause(false);
 				}
 
-				if (ActualMonth == NextArrival) {
+				if (CurrentMonth == NextArrival) {
 					pause = true;
 
 					Villager[] arrivals = GenerateVillagers();
@@ -139,7 +141,7 @@ public class EventManager : MonoBehaviour
 	void CheckVillageCapacity()
 	{
 		if (StatsManagerObj.Villagers.Count < m_VillagerLimit)
-			NextArrival = (ActualMonth + ArrivalPeriod) % 12;
+			NextArrival = (CurrentMonth + ArrivalPeriod) % 12;
 		else
 			NextArrival = 0;
 	}

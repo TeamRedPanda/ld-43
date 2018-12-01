@@ -525,13 +525,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6704155f664f96d41a5b41e764d65dbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SecondsPerMonth: 60
   SacrificePeriod: 7
-  NextArrival: 0
   ArrivalPeriod: 3
-  StartTime: 60
-  PassageTime: 5
-  ActualMonth: 0
-  NextSacrifice: 0
   RecruitMenu: {fileID: 1459293476405776, guid: eb79c7668afd046448582512e1eb61cb,
     type: 2}
   SacrificeMenu: {fileID: 1128501592346736, guid: e1cfd34472a823149b19205e7add82db,
