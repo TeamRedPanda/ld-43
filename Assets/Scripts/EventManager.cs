@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class EventManager : MonoBehaviour
 {
+    [SerializeField]
 	StatsManager StatsManagerObj;
 
 	public float SecondsPerMonth = 60;
-	private float CurrentMonthTimeRemaining = 60;
-	private float CurrentMonth = 0;
+	private float m_CurrentMonthTimeRemaining = 60;
+	private int m_CurrentMonth = 0;
 
 	public float SacrificePeriod = 6;
-    private float NextSacrifice;
+    private float m_NextSacrifice;
 
 	public float ArrivalPeriod = 3;
-	private float NextArrival;
+	private float m_NextArrival;
 
     public GameObject RecruitMenu;
 	public GameObject SacrificeMenu;
@@ -23,7 +24,7 @@ public class EventManager : MonoBehaviour
     [SerializeField]
     private ResourceListView m_ResourceListView;
 
-	bool pause = false;
+	private bool m_IsPaused = false;
 
 	float m_VillagerLimit;
 	float m_MaxSacrifices;
@@ -37,25 +38,35 @@ public class EventManager : MonoBehaviour
 		CalculateSacrificePeriod();
 		CalculateLimits();
 		CheckVillageCapacity();
+        UpdateResourceView();
 
-        NextArrival = ArrivalPeriod;
-		NextSacrifice = (CurrentMonth + SacrificePeriod) % 12;
+        m_NextArrival = ArrivalPeriod;
+		m_NextSacrifice = (m_CurrentMonth + SacrificePeriod) % 12;
 
-        CurrentMonthTimeRemaining = SecondsPerMonth;
+        m_CurrentMonthTimeRemaining = SecondsPerMonth;
 	}
+
+    void UpdateResourceView()
+    {
+        m_ResourceListView.UpdateWood((int)StatsManagerObj.WoodProduction);
+        m_ResourceListView.UpdateFood((int)StatsManagerObj.FoodProduction);
+        m_ResourceListView.UpdateFaith((int)StatsManagerObj.FaithProduction);
+        m_ResourceListView.UpdatePopulation((int)StatsManagerObj.Villagers.Count, (int)m_VillagerLimit); // TODO: Wtf.
+    }
 
 	void Update()
 	{
-        if (pause)
+        if (m_IsPaused)
             return;
 
-		CurrentMonthTimeRemaining -= Time.deltaTime;
-		if (CurrentMonthTimeRemaining <= 0) {
-			CurrentMonth = (CurrentMonth + 1) % 12;
-			CurrentMonthTimeRemaining = SecondsPerMonth;
+		m_CurrentMonthTimeRemaining -= Time.deltaTime;
+		if (m_CurrentMonthTimeRemaining <= 0) {
+			m_CurrentMonth = (m_CurrentMonth + 1) % 12;
+            m_ResourceListView.UpdateDate(m_CurrentMonth, 1501); // TODO: WE NEED YEARS!!!!
+			m_CurrentMonthTimeRemaining = SecondsPerMonth;
 
-			if (CurrentMonth == NextSacrifice) {
-				pause = true;
+			if (m_CurrentMonth == m_NextSacrifice) {
+				m_IsPaused = true;
 
 				SacrificeMenuView sacrificeView = Instantiate(SacrificeMenu, Canvas).GetComponent<SacrificeMenuView>();
 
@@ -68,8 +79,8 @@ public class EventManager : MonoBehaviour
 				sacrificeView.OnSacrificeFulfill += () => Pause(false);
 			}
 
-			if (CurrentMonth == NextArrival) {
-				pause = true;
+			if (m_CurrentMonth == m_NextArrival) {
+				m_IsPaused = true;
 
 				Villager[] arrivals = GenerateVillagers();
 
@@ -145,9 +156,9 @@ public class EventManager : MonoBehaviour
 	void CheckVillageCapacity()
 	{
 		if (StatsManagerObj.Villagers.Count < m_VillagerLimit)
-			NextArrival = (CurrentMonth + ArrivalPeriod) % 12;
+			m_NextArrival = (m_CurrentMonth + ArrivalPeriod) % 12;
 		else
-			NextArrival = 0;
+			m_NextArrival = 0;
 	}
 
 	void Recruit(Villager villager)
@@ -155,16 +166,20 @@ public class EventManager : MonoBehaviour
 		StatsManagerObj.Villagers.Add(villager);
 
 		CheckVillageCapacity();
-	}
+        UpdateResourceView();
+
+    }
 
 	void Sacrifice(int index)
 	{
 		StatsManagerObj.Villagers.RemoveAt(index);
 
 		CalculateSacrificePeriod();
-	}
+        UpdateResourceView();
+
+    }
 
 	public void Pause(bool value){
-		pause = value;
+		m_IsPaused = value;
 	}
 }
