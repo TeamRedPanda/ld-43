@@ -30,11 +30,14 @@ public class SacrificeMenuView : MonoBehaviour
     {
         m_CurrentSacrificeCount = 0;
         m_SacrificeCount = count;
+        SacrificeCountText.text = string.Format("{0}/{1}", m_CurrentSacrificeCount, m_SacrificeCount);
     }
 
     void Sacrifice(Villager villager)
     {
         m_CurrentSacrificeCount++;
+        SacrificeCountText.text = string.Format("{0}/{1}", m_CurrentSacrificeCount, m_SacrificeCount);
+
         OnSacrifice?.Invoke(villager);
 
         if (m_CurrentSacrificeCount == m_SacrificeCount)
