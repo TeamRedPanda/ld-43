@@ -98,15 +98,15 @@ public class EventManager : MonoBehaviour
 		List<Villager> arrivalsChoices = new List<Villager>();
 
 		for (int i = 0; i < arrivalCount; i++) {
-			arrivalsChoices[i] = new Villager();
-			GenerateStat(arrivalsChoices[i]);
+			arrivalsChoices.Add(CreateRandomVillager());
 		}
 
 		return arrivalsChoices.ToArray();
 	}
 
-	void GenerateStat(Villager villager)
+	Villager CreateRandomVillager()
 	{
+        Villager villager = new Villager();
 		villager.FoodProduction = Random.Range(
 			         Mathf.Min(0 + Mathf.Floor(100 / StatsManagerObj.FoodProduction), 5), 
 		             Mathf.Max(10 - Mathf.Floor(StatsManagerObj.FoodProduction / 100), 5)
@@ -121,6 +121,8 @@ public class EventManager : MonoBehaviour
 			         Mathf.Min(0 + Mathf.Floor(100 / StatsManagerObj.FaithProduction), 5), 
 		             Mathf.Max(10 - Mathf.Floor(StatsManagerObj.FaithProduction / 100), 5)
 					 );
+
+        return villager;
 	}
 
 	void CalculateLimits()
