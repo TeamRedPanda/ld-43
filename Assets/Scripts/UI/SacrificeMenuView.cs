@@ -46,11 +46,6 @@ public class SacrificeMenuView : MonoBehaviour
     public void CloseView()
     {
         OnSacrificeFulfill?.Invoke();
-        Clear();
-    }
-
-    void Clear()
-    {
-
+        Destroy(this.gameObject);
     }
 }

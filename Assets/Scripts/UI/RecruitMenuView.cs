@@ -34,12 +34,7 @@ public class RecruitMenuView : MonoBehaviour
 
     public void CloseView()
     {
-        Clear();
         OnRecruitFulfill?.Invoke();
-    }
-
-    void Clear()
-    {
-
+        Destroy(this.gameObject);
     }
 }
