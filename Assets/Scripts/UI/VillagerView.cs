@@ -24,5 +24,6 @@ public class VillagerView : MonoBehaviour
     public void Action()
     {
         OnActionButton?.Invoke(Index);
+        Destroy(this.gameObject);
     }
 }
