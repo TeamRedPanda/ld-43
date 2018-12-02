@@ -102,6 +102,7 @@ public class EventManager : MonoBehaviour
                 m_WindowsOpen--;
 				SacrificeResult sacrificeResult = CalculateSacrificeOutcome();
 				StatsManagerObj.ApplyModifier(sacrificeResult.Modifiers);
+				CalculateSacrificePeriod();
 				UpdateResourceView();
 				SacrificeResultView resultView = Instantiate(SacrificeResult, Canvas).GetComponent<SacrificeResultView>();
 				m_WindowsOpen++;
@@ -215,7 +216,6 @@ public class EventManager : MonoBehaviour
 
 		Debug.Log("Sacrificied successfully.");
 
-		CalculateSacrificePeriod();
         UpdateResourceView();
     }
 
