@@ -208,9 +208,9 @@ public class EventManager : MonoBehaviour
 		float[] values = new float[3];
 
 		for (int i = 0; i < sacrifices.Count; i++) {
-			values[0] += Mathf.Floor(sacrifices[i].FoodProduction  - 6.5f);
-			values[1] += Mathf.Floor(sacrifices[i].WoodProduction  - 6.5f);
-			values[2] += Mathf.Floor(sacrifices[i].FaithProduction - 6.5f);
+			values[0] += Mathf.Floor(sacrifices[i].FoodProduction  - 6f);
+			values[1] += Mathf.Floor(sacrifices[i].WoodProduction  - 6f);
+			values[2] += Mathf.Floor(sacrifices[i].FaithProduction - 6f);
 		}
 
 		return values;
