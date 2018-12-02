@@ -98,7 +98,6 @@ public class EventManager : MonoBehaviour
 			sacrificeView.SetSacrificeCount((int)m_MaxSacrifices);
 			sacrificeView.OnSacrifice += Sacrifice;
             sacrificeView.OnSacrificeFulfill += () => {
-                CalculateSacrificePeriod();
                 m_NextSacrifice = (m_CurrentMonth + m_SacrificePeriod) % 12;
                 m_WindowsOpen--;
 				SacrificeResult sacrificeResult = CalculateSacrificeOutcome();
