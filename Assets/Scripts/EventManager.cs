@@ -52,7 +52,7 @@ public class EventManager : MonoBehaviour
 		StatsManagerObj.UpdateStats();
 		CalculateSacrificePeriod();
 		CalculateLimits();
-		CheckVillageCapacity();
+		CalculateNextArrival();
         UpdateResourceView();
 
         m_NextArrival = ArrivalPeriod;
@@ -129,7 +129,7 @@ public class EventManager : MonoBehaviour
 			recruitView.SetRecruitCount((int)m_VillagerLimit - (int)StatsManagerObj.Villagers.Count);
 			recruitView.AddVillagerViews(arrivals);
 			recruitView.OnRecruit += Recruit;
-            recruitView.OnRecruitFulfill += () => { Pause(false); CheckVillageCapacity(); m_WindowsOpen--; };
+            recruitView.OnRecruitFulfill += () => { Pause(false); CalculateNextArrival(); m_WindowsOpen--; };
 		}
 	}
 
@@ -197,19 +197,16 @@ public class EventManager : MonoBehaviour
 		m_SacrificePeriod = Mathf.Min(12, SacrificePeriodBase + Mathf.Floor(StatsManagerObj.FaithProduction / 30f));
 	}
 
-	void CheckVillageCapacity()
+	void CalculateNextArrival()
 	{
-		//if (StatsManagerObj.Villagers.Count < m_VillagerLimit)
-			m_NextArrival = (m_CurrentMonth + ArrivalPeriod) % 12;
-		//else
-		//	m_NextArrival = 0;
+		m_NextArrival = (m_CurrentMonth + ArrivalPeriod) % 12;
 	}
 
 	void Recruit(Villager villager)
 	{
 		StatsManagerObj.Recruit(villager);
 
-		CheckVillageCapacity();
+		CalculateNextArrival();
         UpdateResourceView();
     }
 
