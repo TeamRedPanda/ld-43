@@ -75,13 +75,13 @@ public class StatsManager
 			switch (modifiers[i].Type)
 			{
 				case ResourceType.Food:
-					FoodModifier  += modifiers[i].Amount;
+					FoodModifier  += modifiers[i].Amount * 0.01f;
 					break;
 				case ResourceType.Wood:
-					WoodModifier  += modifiers[i].Amount;
+					WoodModifier  += modifiers[i].Amount * 0.01f;
 					break;
 				case ResourceType.Faith:
-					FaithModifier += modifiers[i].Amount;
+					FaithModifier += modifiers[i].Amount * 0.01f;
 					break;
 			}
 		}
