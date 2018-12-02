@@ -5,18 +5,16 @@ using Cinemachine;
 
 public class ControlMovement : MonoBehaviour {
 
-	public GameObject TestObj;
+	public float m_StartPoint = 1f;
+	public float m_EndPoint = 34f;
 
 	private CinemachineDollyCart m_PathMovement;
-
-	private float m_StartPoint = 1f;
-	private float m_EndPoint = 34f;
 
 	private bool foward = true;
 
 	// Use this for initialization
 	void Start () {
-		m_PathMovement = TestObj.GetComponent<CinemachineDollyCart>();
+		m_PathMovement = this.GetComponent<CinemachineDollyCart>();
 		m_PathMovement.m_Position = m_StartPoint;
 	}
 	
