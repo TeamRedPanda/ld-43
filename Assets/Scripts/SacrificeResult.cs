@@ -10,8 +10,8 @@ public struct ResourceModifier
     public int Amount;
 }
 
-[CreateAssetMenu(menuName = "Village Gods/Create God's Response")]
-public class GodsResponse : ScriptableObject
+[CreateAssetMenu(menuName = "Village Gods/Create Sacrifice Result")]
+public class SacrificeResult : ScriptableObject
 {
     public string Title;
     public Image Icon;
