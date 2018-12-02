@@ -20,12 +20,13 @@ public class EventManager : MonoBehaviour
 	public float ArrivalPeriod = 3;
 	private float m_NextArrival;
 
+	public GameObject GameOver;
     public GameObject RecruitMenu;
 	public GameObject SacrificeMenu;
 	public GameObject SacrificeResult;
 	public Transform Canvas;
 	
-	private SacrificeOutcome SacrificeManaging;
+	private SacrificeOutcome m_SacrificeManaging;
 
     [SerializeField]
     private ResourceListView m_ResourceListView;
@@ -43,7 +44,7 @@ public class EventManager : MonoBehaviour
 
 	void Start()
 	{
-		SacrificeManaging = this.GetComponent<SacrificeOutcome>();
+		m_SacrificeManaging = this.GetComponent<SacrificeOutcome>();
 
 		StatsManagerObj = new StatsManager();
 		GetInitialState();
@@ -112,6 +113,11 @@ public class EventManager : MonoBehaviour
 				resultView.Initialize(sacrificeResult.Title, sacrificeResult.Icon, sacrificeResult.Text);
 				resultView.OnWindowClose += () => m_WindowsOpen--;
             };
+		}
+
+		if (StatsManagerObj.Villagers.Count <= 0) {
+			GameOverView gameOver = Instantiate(GameOver, Canvas).GetComponent<GameOverView>();
+			m_WindowsOpen++;
 		}
 
 		if (m_CurrentMonth == m_NextArrival) {
@@ -250,21 +256,21 @@ public class EventManager : MonoBehaviour
 		{
 			case 0:
 				if (sacrificesValues[index] <= 0)
-					possibleResults = SacrificeManaging.FoodNegativeEffects;
+					possibleResults = m_SacrificeManaging.FoodNegativeEffects;
 				else
-					possibleResults = SacrificeManaging.FoodPositiveEffects;
+					possibleResults = m_SacrificeManaging.FoodPositiveEffects;
 				break;
 			case 1:
 				if (sacrificesValues[index] <= 0)
-					possibleResults = SacrificeManaging.WoodNegativeEffects;
+					possibleResults = m_SacrificeManaging.WoodNegativeEffects;
 				else
-					possibleResults = SacrificeManaging.WoodPositiveEffects;
+					possibleResults = m_SacrificeManaging.WoodPositiveEffects;
 				break;
 			case 2:
 				if (sacrificesValues[index] <= 0)
-					possibleResults = SacrificeManaging.FaithNegativeEffects;
+					possibleResults = m_SacrificeManaging.FaithNegativeEffects;
 				else
-					possibleResults = SacrificeManaging.FaithPositiveEffects;
+					possibleResults = m_SacrificeManaging.FaithPositiveEffects;
 				break;
 		}
 
