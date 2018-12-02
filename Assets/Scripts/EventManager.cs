@@ -266,7 +266,7 @@ public class EventManager : MonoBehaviour
 				break;
 		}
 
-		int resultIndex = Random.Range(1, possibleResults.Count);
+		int resultIndex = Random.Range(0, possibleResults.Count);
 
 		return possibleResults[resultIndex];
 	}
