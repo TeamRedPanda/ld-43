@@ -15,6 +15,7 @@ public class EventManager : MonoBehaviour
 	public float SacrificePeriodBase = 6;
     private float m_SacrificePeriod;
     private float m_NextSacrifice;
+	private List<Villager> m_SacrificesValues;
 
 	public float ArrivalPeriod = 3;
 	private float m_NextArrival;
@@ -128,6 +129,8 @@ public class EventManager : MonoBehaviour
 
 		StatsManagerObj.Villagers.Add(villager1);
 		StatsManagerObj.Villagers.Add(villager2);
+
+		m_SacrificesValues = new List<Villager>();
 	}
 
 	Villager[] GenerateVillagers()
@@ -193,11 +196,26 @@ public class EventManager : MonoBehaviour
 
 	void Sacrifice(Villager villager)
 	{
+		m_SacrificesValues.Add(villager);
+
 		StatsManagerObj.Sacrifice(villager);
 
 		CalculateSacrificePeriod();
         UpdateResourceView();
     }
+
+	float[] CalculateSacrificeWorth(List<Villager> sacrifices)
+	{
+		float[] values = new float[3];
+
+		for (int i = 0; i < sacrifices.Count; i++) {
+			values[0] += Mathf.Floor(sacrifices[i].FoodProduction  - 5);
+			values[1] += Mathf.Floor(sacrifices[i].WoodProduction  - 5);
+			values[2] += Mathf.Floor(sacrifices[i].FaithProduction - 5);
+		}
+
+		return values;
+	}
 
 	public void Pause(bool value){
 		//m_IsPaused = value;
