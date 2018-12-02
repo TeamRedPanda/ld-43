@@ -19,5 +19,5 @@ MonoBehaviour:
   Modifiers:
   - Type: 1
     Amount: 2
-  - Type: 1
+  - Type: 0
     Amount: 1
