@@ -17,6 +17,7 @@ public class ControlMovement : MonoBehaviour {
 		m_PathMovement = this.GetComponent<CinemachineDollyCart>();
 		m_SmoothPath =  ObjectPath.GetComponent<CinemachineSmoothPath>();
 
+		m_PathMovement.m_PositionUnits = CinemachinePathBase.PositionUnits.PathUnits;
 		m_PathMovement.m_Position = m_SmoothPath.MinPos;
 	}
 	
