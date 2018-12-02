@@ -160,20 +160,20 @@ public class EventManager : MonoBehaviour
 	Villager CreateRandomVillager()
 	{
         Villager villager = new Villager();
-		villager.FoodProduction = Random.Range(
+		villager.FoodProduction = Mathf.Round(Random.Range(
 			         Mathf.Min(0 + Mathf.Floor(100 / StatsManagerObj.FoodProduction), 5), 
 		             Mathf.Max(10 - Mathf.Floor(StatsManagerObj.FoodProduction / 100), 5)
-					 );
+					 ));
 		
-		villager.WoodProduction = Random.Range(
+		villager.WoodProduction = Mathf.Round(Random.Range(
 			         Mathf.Min(0 + Mathf.Floor(100 / StatsManagerObj.WoodProduction), 5), 
 		             Mathf.Max(10 - Mathf.Floor(StatsManagerObj.WoodProduction / 100), 5)
-					 );
+					 ));
 		
-		villager.FaithProduction = Random.Range(
+		villager.FaithProduction = Mathf.Round(Random.Range(
 			         Mathf.Min(0 + Mathf.Floor(100 / StatsManagerObj.FaithProduction), 5), 
 		             Mathf.Max(10 - Mathf.Floor(StatsManagerObj.FaithProduction / 100), 5)
-					 );
+					 ));
 
         return villager;
 	}
