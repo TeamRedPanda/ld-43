@@ -84,7 +84,28 @@ public class EventManager : MonoBehaviour
             m_TotalMonths++;
             m_ResourceListView.UpdateDate(m_CurrentMonth, m_CurrentYear); // TODO: WE NEED YEARS!!!!
 			m_CurrentMonthTimeRemaining = SecondsPerMonth;
+
+			if (StatsManagerObj.Villagers.Count <= 0) {
+				Instantiate(GameOver, Canvas).GetComponent<GameOverView>();
+				m_WindowsOpen++;
+			}
         }
+
+		if (m_CurrentMonth == m_NextArrival) {
+            m_WindowsOpen++;
+
+            Villager[] arrivals = GenerateVillagers();
+
+			RecruitMenuView recruitView = Instantiate(RecruitMenu, Canvas).GetComponent<RecruitMenuView>();
+			recruitView.SetRecruitCount((int)m_VillagerLimit - (int)StatsManagerObj.Villagers.Count);
+			recruitView.AddVillagerViews(arrivals);
+			recruitView.OnRecruit += StatsManagerObj.Recruit;
+            recruitView.OnRecruitFulfill += () => { CalculateNextArrival(); 
+			CalculateLimits();
+			CalculateSacrificePeriod();
+			UpdateResourceView(); 
+			m_WindowsOpen--; };
+		}
 
 		if (m_CurrentMonth == m_NextSacrifice) {
 			m_WindowsOpen++;
@@ -111,27 +132,6 @@ public class EventManager : MonoBehaviour
 				resultView.Initialize(sacrificeResult.Title, sacrificeResult.Icon, sacrificeResult.Text);
 				resultView.OnWindowClose += () => m_WindowsOpen--;
             };
-		}
-
-		if (StatsManagerObj.Villagers.Count <= 0) {
-			Instantiate(GameOver, Canvas).GetComponent<GameOverView>();
-			m_WindowsOpen++;
-		}
-
-		if (m_CurrentMonth == m_NextArrival) {
-            m_WindowsOpen++;
-
-            Villager[] arrivals = GenerateVillagers();
-
-			RecruitMenuView recruitView = Instantiate(RecruitMenu, Canvas).GetComponent<RecruitMenuView>();
-			recruitView.SetRecruitCount((int)m_VillagerLimit - (int)StatsManagerObj.Villagers.Count);
-			recruitView.AddVillagerViews(arrivals);
-			recruitView.OnRecruit += StatsManagerObj.Recruit;
-            recruitView.OnRecruitFulfill += () => { CalculateNextArrival(); 
-			CalculateLimits();
-			CalculateSacrificePeriod();
-			UpdateResourceView(); 
-			m_WindowsOpen--; };
 		}
 	}
 
