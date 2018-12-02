@@ -124,8 +124,6 @@ GameObject:
   - component: {fileID: 965549399}
   - component: {fileID: 965549398}
   - component: {fileID: 965549397}
-  - component: {fileID: 965549402}
-  - component: {fileID: 965549401}
   m_Layer: 0
   m_Name: DollyCart1
   m_TagString: Untagged
@@ -204,49 +202,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &965549401
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 965549396}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!320 &965549402
-PlayableDirector:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 965549396}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 5fb51c09b9480054c98f92ac79eba39f, type: 2}
-  m_InitialState: 1
-  m_WrapMode: 2
-  m_DirectorUpdateMode: 1
-  m_InitialTime: 0
-  m_SceneBindings:
-  - key: {fileID: 0}
-    value: {fileID: 965549401}
-  - key: {fileID: 0}
-    value: {fileID: 965549401}
-  - key: {fileID: 0}
-    value: {fileID: 965549401}
-  - key: {fileID: 0}
-    value: {fileID: 965549401}
-  m_ExposedReferences:
-    m_References:
-    - ac9b9fcff4da3894489545ed6a2e6059: {fileID: 965549396}
 --- !u!1 &1200564068
 GameObject:
   m_ObjectHideFlags: 0
