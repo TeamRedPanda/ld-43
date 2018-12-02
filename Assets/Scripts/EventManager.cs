@@ -22,7 +22,10 @@ public class EventManager : MonoBehaviour
 
     public GameObject RecruitMenu;
 	public GameObject SacrificeMenu;
+	public GameObject SacrificeResult;
 	public Transform Canvas;
+	
+	private SacrificeOutcome SacrificeManaging;
 
     [SerializeField]
     private ResourceListView m_ResourceListView;
@@ -40,6 +43,8 @@ public class EventManager : MonoBehaviour
 
 	void Start()
 	{
+		SacrificeManaging = this.GetComponent<SacrificeOutcome>();
+
 		StatsManagerObj = new StatsManager();
 		GetInitialState();
 
@@ -99,6 +104,11 @@ public class EventManager : MonoBehaviour
                 CalculateSacrificePeriod();
                 m_NextSacrifice = (m_CurrentMonth + m_SacrificePeriod) % 12;
                 m_WindowsOpen--;
+				SacrificeResult sacrificeResult = CalculateSacrificeOutcome();
+				SacrificeResultView resultView = Instantiate(SacrificeResult, Canvas).GetComponent<SacrificeResultView>();
+				m_WindowsOpen++;
+				resultView.Initialize(sacrificeResult.Title, sacrificeResult.Icon, sacrificeResult.Text);
+				resultView.OnWindowClose += () => m_WindowsOpen--;
             };
 		}
 
@@ -215,6 +225,50 @@ public class EventManager : MonoBehaviour
 		}
 
 		return values;
+	}
+
+	SacrificeResult CalculateSacrificeOutcome()
+	{
+		int index = 0;
+		float temp = 0f;
+		float[] sacrificesValues = new float[3];
+
+		sacrificesValues = CalculateSacrificeWorth(m_SacrificesValues);
+
+		List<SacrificeResult> possibleResults = new List<SacrificeResult>();
+
+		for (int i = 0; i < sacrificesValues.Length; i++) {
+			if (temp <= Mathf.Abs(sacrificesValues[i])){
+				index = i;
+				temp = Mathf.Abs(sacrificesValues[i]);
+			}
+		}
+
+		switch (index)
+		{
+			case 0:
+				if (sacrificesValues[index] <= 0)
+					possibleResults = SacrificeManaging.FoodNegativeEffects;
+				else
+					possibleResults = SacrificeManaging.FoodPositiveEffects;
+				break;
+			case 1:
+				if (sacrificesValues[index] <= 0)
+					possibleResults = SacrificeManaging.WoodNegativeEffects;
+				else
+					possibleResults = SacrificeManaging.WoodPositiveEffects;
+				break;
+			case 2:
+				if (sacrificesValues[index] <= 0)
+					possibleResults = SacrificeManaging.FaithNegativeEffects;
+				else
+					possibleResults = SacrificeManaging.FaithPositiveEffects;
+				break;
+		}
+
+		int resultIndex = Random.Range(1, possibleResults.Count);
+
+		return possibleResults[resultIndex];
 	}
 
 	public void Pause(bool value){
