@@ -88,7 +88,8 @@ public class EventManager : MonoBehaviour
 
 			SacrificeMenuView sacrificeView = Instantiate(SacrificeMenu, Canvas).GetComponent<SacrificeMenuView>();
 
-			for (int i = 0; i < StatsManagerObj.Villagers.Count; i++) {
+            // Only send the first 8 villagers (UI limitation).
+			for (int i = 0; i < Mathf.Min(StatsManagerObj.Villagers.Count, 8); i++) {
 				sacrificeView.AddVillagerView(StatsManagerObj.Villagers[i], i);
 			}
 
