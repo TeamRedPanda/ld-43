@@ -11,7 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dce168a7fc5e5d468f870c7f748b136, type: 3}
   m_Name: Food_Negative_1
   m_EditorClassIdentifier: 
-  Title: 
+  Title: Food_Negative_1
   Icon: {fileID: 0}
-  Text: 
-  Modifier: []
+  Text: <center><font color=red>-5%</font> food</center>
+  Modifier:
+  - Type: 1
+    Amount: -5

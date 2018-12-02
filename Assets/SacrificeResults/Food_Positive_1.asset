@@ -11,7 +11,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dce168a7fc5e5d468f870c7f748b136, type: 3}
   m_Name: Food_Positive_1
   m_EditorClassIdentifier: 
-  Title: 
+  Title: Food_Positive_1
   Icon: {fileID: 0}
-  Text: 
-  Modifier: []
+  Text: '<center><font color=green>2%</font> more food</center>
+
+    <center><font color=green>1%</font> more wood</center>'
+  Modifier:
+  - Type: 1
+    Amount: 2
+  - Type: 1
+    Amount: 1

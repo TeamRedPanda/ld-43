@@ -11,6 +11,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dce168a7fc5e5d468f870c7f748b136, type: 3}
   m_Name: Faith_Positive_1
   m_EditorClassIdentifier: 
-  Title: 
+  Title: The Prodigal Son
   Icon: {fileID: 0}
-  Text: 
+  Text: 'The peace of God, which transcends all understanding, will guard your hearts
+    and your minds.
+
+    <center><font color=green>2%</font> more food</center>'
+  Modifier:
+  - Type: 1
+    Amount: 2

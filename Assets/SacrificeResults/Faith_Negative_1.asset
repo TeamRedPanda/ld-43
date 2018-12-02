@@ -11,7 +11,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dce168a7fc5e5d468f870c7f748b136, type: 3}
   m_Name: Faith_Negative_1
   m_EditorClassIdentifier: 
-  Title: 
+  Title: Heat
   Icon: {fileID: 0}
-  Text: 
-  Modifier: []
+  Text: 'You''ve lost the path of the Church. Your fields shall give no fruit and
+    the rivers and wells bring no water.
+
+    <center><font color=red>-5%</font> food</center>'
+  Modifier:
+  - Type: 1
+    Amount: -5
