@@ -47,6 +47,7 @@ public class EventManager : MonoBehaviour
 		m_SacrificeManaging = this.GetComponent<SacrificeOutcome>();
 
 		StatsManagerObj = new StatsManager();
+        StatsManagerObj.OnStatsChanged += UpdateResourceView;
 		GetInitialState();
 
 		StatsManagerObj.UpdateStats();
