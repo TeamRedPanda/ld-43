@@ -18,5 +18,5 @@ public class SacrificeResult : ScriptableObject
 
     [TextArea()]
     public string Text;
-    public ResourceModifier[] Modifier;
+    public ResourceModifier[] Modifiers;
 }
