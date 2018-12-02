@@ -537,6 +537,7 @@ MonoBehaviour:
   SecondsPerMonth: 1
   SacrificePeriodBase: 6
   ArrivalPeriod: 3
+  GameOver: {fileID: 1310156860780296, guid: 114550a5759300c45aea6e789c16fd78, type: 2}
   RecruitMenu: {fileID: 1459293476405776, guid: eb79c7668afd046448582512e1eb61cb,
     type: 2}
   SacrificeMenu: {fileID: 1128501592346736, guid: e1cfd34472a823149b19205e7add82db,
