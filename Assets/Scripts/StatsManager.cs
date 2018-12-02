@@ -15,6 +15,8 @@ public class StatsManager
 	public float FoodModifier = 1.0f;
 	public float WoodModifier = 1.0f;
 	public float FaithModifier = 1.0f;
+	
+	public List<Villager> SacrificesValues;
 
 	float m_TotalFood = 0.0f;
 	float m_TotalWood = 0.0f;
@@ -33,6 +35,8 @@ public class StatsManager
 
     public void Sacrifice(Villager villager)
     {
+		SacrificesValues.Add(villager);
+
         Villagers.Remove(villager);
         UpdateStats();
     }

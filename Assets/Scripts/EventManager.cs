@@ -15,7 +15,6 @@ public class EventManager : MonoBehaviour
 	public float SacrificePeriodBase = 6;
     private float m_SacrificePeriod;
     private float m_NextSacrifice;
-	private List<Villager> m_SacrificesValues;
 
 	public float ArrivalPeriod = 3;
 	private float m_NextArrival;
@@ -96,7 +95,7 @@ public class EventManager : MonoBehaviour
 			}
 
 			sacrificeView.SetSacrificeCount((int)m_MaxSacrifices);
-			sacrificeView.OnSacrifice += Sacrifice;
+			sacrificeView.OnSacrifice += StatsManagerObj.Sacrifice;
             sacrificeView.OnSacrificeFulfill += () => {
                 m_NextSacrifice = (m_CurrentMonth + m_SacrificePeriod) % 12;
                 m_WindowsOpen--;
@@ -145,7 +144,7 @@ public class EventManager : MonoBehaviour
 		StatsManagerObj.Villagers.Add(villager1);
 		StatsManagerObj.Villagers.Add(villager2);
 
-		m_SacrificesValues = new List<Villager>();
+		StatsManagerObj.SacrificesValues = new List<Villager>();
 	}
 
 	Villager[] GenerateVillagers()
@@ -198,13 +197,6 @@ public class EventManager : MonoBehaviour
 		m_NextArrival = (m_CurrentMonth + ArrivalPeriod) % 12;
 	}
 
-	void Sacrifice(Villager villager)
-	{
-		m_SacrificesValues.Add(villager);
-
-		StatsManagerObj.Sacrifice(villager);
-    }
-
 	float[] CalculateSacrificeWorth(List<Villager> sacrifices)
 	{
 		float[] values = new float[3];
@@ -224,7 +216,7 @@ public class EventManager : MonoBehaviour
 		float temp = 0f;
 		float[] sacrificesValues = new float[3];
 
-		sacrificesValues = CalculateSacrificeWorth(m_SacrificesValues);
+		sacrificesValues = CalculateSacrificeWorth(StatsManagerObj.SacrificesValues);
 
 		List<SacrificeResult> possibleResults = new List<SacrificeResult>();
 
