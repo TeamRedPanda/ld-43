@@ -100,6 +100,7 @@ public class EventManager : MonoBehaviour
 				SacrificeResult sacrificeResult = CalculateSacrificeOutcome();
 				StatsManagerObj.ApplyModifier(sacrificeResult.Modifiers);
 				CalculateSacrificePeriod();
+				CalculateLimits();
 				UpdateResourceView();
 				SacrificeResultView resultView = Instantiate(SacrificeResult, Canvas).GetComponent<SacrificeResultView>();
 				m_WindowsOpen++;
@@ -122,7 +123,11 @@ public class EventManager : MonoBehaviour
 			recruitView.SetRecruitCount((int)m_VillagerLimit - (int)StatsManagerObj.Villagers.Count);
 			recruitView.AddVillagerViews(arrivals);
 			recruitView.OnRecruit += StatsManagerObj.Recruit;
-            recruitView.OnRecruitFulfill += () => { CalculateNextArrival(); UpdateResourceView(); m_WindowsOpen--; };
+            recruitView.OnRecruitFulfill += () => { CalculateNextArrival(); 
+			CalculateLimits();
+			CalculateSacrificePeriod();
+			UpdateResourceView(); 
+			m_WindowsOpen--; };
 		}
 	}
 
