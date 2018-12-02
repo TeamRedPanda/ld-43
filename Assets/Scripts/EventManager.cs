@@ -125,7 +125,7 @@ public class EventManager : MonoBehaviour
 			recruitView.SetRecruitCount((int)m_VillagerLimit - (int)StatsManagerObj.Villagers.Count);
 			recruitView.AddVillagerViews(arrivals);
 			recruitView.OnRecruit += Recruit;
-            recruitView.OnRecruitFulfill += () => { CalculateNextArrival(); m_WindowsOpen--; };
+            recruitView.OnRecruitFulfill += () => { CalculateNextArrival(); UpdateResourceView(); m_WindowsOpen--; };
 		}
 	}
 
@@ -201,11 +201,6 @@ public class EventManager : MonoBehaviour
 	void Recruit(Villager villager)
 	{
 		StatsManagerObj.Recruit(villager);
-
-		Debug.Log("Recruited successfully.");
-
-		CalculateNextArrival();
-        UpdateResourceView();
     }
 
 	void Sacrifice(Villager villager)
@@ -213,8 +208,6 @@ public class EventManager : MonoBehaviour
 		m_SacrificesValues.Add(villager);
 
 		StatsManagerObj.Sacrifice(villager);
-
-		Debug.Log("Sacrificied successfully.");
     }
 
 	float[] CalculateSacrificeWorth(List<Villager> sacrifices)
