@@ -42,6 +42,8 @@ public class StatsManager
 		CalculateTotalStats();
 		CalculateProductions();
 		CalculateHouses();
+
+		Debug.Log("Recalculated stats.");
 	}
 
 	void CalculateHouses()

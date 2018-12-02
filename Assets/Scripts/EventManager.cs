@@ -67,7 +67,9 @@ public class EventManager : MonoBehaviour
         m_ResourceListView.UpdateFood((int)StatsManagerObj.FoodProduction, StatsManagerObj.FoodModifier);
         m_ResourceListView.UpdateFaith((int)StatsManagerObj.FaithProduction, StatsManagerObj.FaithModifier);
         m_ResourceListView.UpdatePopulation((int)StatsManagerObj.Villagers.Count, (int)m_VillagerLimit); // TODO: Wtf.
-    }
+    
+		Debug.Log("Update UI values.");
+	}
 
 	void Update()
 	{
@@ -82,11 +84,6 @@ public class EventManager : MonoBehaviour
 			m_CurrentMonth = (m_CurrentMonth + 1) % 12;
             m_ResourceListView.UpdateDate(m_CurrentMonth, m_CurrentYear); // TODO: WE NEED YEARS!!!!
 			m_CurrentMonthTimeRemaining = SecondsPerMonth;
-
-            StatsManagerObj.UpdateStats();
-            CalculateSacrificePeriod();
-            CalculateLimits();
-            UpdateResourceView();
         }
 
 		if (m_CurrentMonth == m_NextSacrifice) {
@@ -206,6 +203,8 @@ public class EventManager : MonoBehaviour
 	{
 		StatsManagerObj.Recruit(villager);
 
+		Debug.Log("Recruited successfully.");
+
 		CalculateNextArrival();
         UpdateResourceView();
     }
@@ -215,6 +214,8 @@ public class EventManager : MonoBehaviour
 		m_SacrificesValues.Add(villager);
 
 		StatsManagerObj.Sacrifice(villager);
+
+		Debug.Log("Sacrificied successfully.");
 
 		CalculateSacrificePeriod();
         UpdateResourceView();
