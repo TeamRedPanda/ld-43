@@ -13,9 +13,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Title: Food_Positive_1
   Icon: {fileID: 0}
-  Text: '<center><font color=green>2%</font> more food</center>
+  Text: '<color=green>+2% food</color>
 
-    <center><font color=green>1%</font> more wood</center>'
+    <color=green>+1% wood</color>'
   Modifier:
   - Type: 1
     Amount: 2
