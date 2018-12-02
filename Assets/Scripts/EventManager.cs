@@ -105,6 +105,7 @@ public class EventManager : MonoBehaviour
 			CalculateSacrificePeriod();
 			UpdateResourceView(); 
 			m_WindowsOpen--; };
+            return;
 		}
 
 		if (m_CurrentMonth == m_NextSacrifice) {
