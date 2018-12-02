@@ -6,5 +6,6 @@ public enum ResourceType
 {
     Wood,
     Food,
-    Faith
+    Faith,
+    Size
 }
