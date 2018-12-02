@@ -98,7 +98,6 @@ public class EventManager : MonoBehaviour
 			sacrificeView.SetSacrificeCount((int)m_MaxSacrifices);
 			sacrificeView.OnSacrifice += Sacrifice;
             sacrificeView.OnSacrificeFulfill += () => {
-                Pause(false);
                 CalculateSacrificePeriod();
                 m_NextSacrifice = (m_CurrentMonth + m_SacrificePeriod) % 12;
                 m_WindowsOpen--;
@@ -126,7 +125,7 @@ public class EventManager : MonoBehaviour
 			recruitView.SetRecruitCount((int)m_VillagerLimit - (int)StatsManagerObj.Villagers.Count);
 			recruitView.AddVillagerViews(arrivals);
 			recruitView.OnRecruit += Recruit;
-            recruitView.OnRecruitFulfill += () => { Pause(false); CalculateNextArrival(); m_WindowsOpen--; };
+            recruitView.OnRecruitFulfill += () => { CalculateNextArrival(); m_WindowsOpen--; };
 		}
 	}
 
@@ -276,9 +275,5 @@ public class EventManager : MonoBehaviour
 		int resultIndex = Random.Range(0, possibleResults.Count);
 
 		return possibleResults[resultIndex];
-	}
-
-	public void Pause(bool value){
-		//m_IsPaused = value;
 	}
 }
