@@ -126,6 +126,7 @@ public class EventManager : MonoBehaviour
             Villager[] arrivals = GenerateVillagers();
 
 			RecruitMenuView recruitView = Instantiate(RecruitMenu, Canvas).GetComponent<RecruitMenuView>();
+			recruitView.SetRecruitCount((int)m_VillagerLimit - (int)StatsManagerObj.Villagers.Count);
 			recruitView.AddVillagerViews(arrivals);
 			recruitView.OnRecruit += Recruit;
             recruitView.OnRecruitFulfill += () => { Pause(false); CheckVillageCapacity(); m_WindowsOpen--; };
