@@ -215,8 +215,6 @@ public class EventManager : MonoBehaviour
 		StatsManagerObj.Sacrifice(villager);
 
 		Debug.Log("Sacrificied successfully.");
-
-        UpdateResourceView();
     }
 
 	float[] CalculateSacrificeWorth(List<Villager> sacrifices)
