@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 [System.Serializable]
 public class StatsManager
@@ -22,6 +23,8 @@ public class StatsManager
 	float m_TotalWood = 0.0f;
 	float m_TotalFaith = 0.0f;
 
+    public event Action OnStatsChanged;
+
 	public StatsManager()
 	{
 		Villagers = new List<Villager>();
@@ -31,6 +34,7 @@ public class StatsManager
     {
         Villagers.Add(villager);
         UpdateStats();
+        OnStatsChanged?.Invoke();
     }
 
     public void Sacrifice(Villager villager)
@@ -39,6 +43,7 @@ public class StatsManager
 
         Villagers.Remove(villager);
         UpdateStats();
+        OnStatsChanged?.Invoke();
     }
 
 	public void UpdateStats()
