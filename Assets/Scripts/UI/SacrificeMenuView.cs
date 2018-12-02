@@ -12,7 +12,7 @@ public class SacrificeMenuView : MonoBehaviour
     [SerializeField]
     private GameObject m_VillagerViewPrefab;
 
-    private int m_CurrentSacrificeCount;
+    private int m_CurrentSacrificeCount = 0;
     private int m_SacrificeCount;
 
     public event Action<Villager> OnSacrifice;
@@ -28,7 +28,9 @@ public class SacrificeMenuView : MonoBehaviour
 
     public void SetSacrificeCount(int count)
     {
-        m_CurrentSacrificeCount = 0;
+        if (m_CurrentSacrificeCount == 0)
+            this.GetComponentInChildren<Button>().interactable = false;
+            
         m_SacrificeCount = count;
         SacrificeCountText.text = string.Format("{0}/{1}", m_CurrentSacrificeCount, m_SacrificeCount);
     }
@@ -40,6 +42,8 @@ public class SacrificeMenuView : MonoBehaviour
 
         OnSacrifice?.Invoke(villager);
 
+        this.GetComponentInChildren<Button>().interactable = true;
+
         if (m_CurrentSacrificeCount == m_SacrificeCount)
         {
             CloseView();
@@ -47,7 +51,7 @@ public class SacrificeMenuView : MonoBehaviour
     }
 
     public void CloseView()
-    {
+    { 
         OnSacrificeFulfill?.Invoke();
         Destroy(this.gameObject);
     }

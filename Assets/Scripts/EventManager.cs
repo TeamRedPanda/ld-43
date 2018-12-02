@@ -15,7 +15,6 @@ public class EventManager : MonoBehaviour
 	public float SacrificePeriodBase = 6;
     private float m_SacrificePeriod;
     private float m_NextSacrifice;
-	private List<Villager> m_SacrificesValues;
 
 	public float ArrivalPeriod = 3;
 	private float m_NextArrival;
@@ -52,7 +51,7 @@ public class EventManager : MonoBehaviour
 		StatsManagerObj.UpdateStats();
 		CalculateSacrificePeriod();
 		CalculateLimits();
-		CheckVillageCapacity();
+		CalculateNextArrival();
         UpdateResourceView();
 
         m_NextArrival = ArrivalPeriod;
@@ -67,7 +66,7 @@ public class EventManager : MonoBehaviour
         m_ResourceListView.UpdateFood((int)StatsManagerObj.FoodProduction, StatsManagerObj.FoodModifier);
         m_ResourceListView.UpdateFaith((int)StatsManagerObj.FaithProduction, StatsManagerObj.FaithModifier);
         m_ResourceListView.UpdatePopulation((int)StatsManagerObj.Villagers.Count, (int)m_VillagerLimit); // TODO: Wtf.
-    }
+	}
 
 	void Update()
 	{
@@ -82,11 +81,6 @@ public class EventManager : MonoBehaviour
 			m_CurrentMonth = (m_CurrentMonth + 1) % 12;
             m_ResourceListView.UpdateDate(m_CurrentMonth, m_CurrentYear); // TODO: WE NEED YEARS!!!!
 			m_CurrentMonthTimeRemaining = SecondsPerMonth;
-
-            StatsManagerObj.UpdateStats();
-            CalculateSacrificePeriod();
-            CalculateLimits();
-            UpdateResourceView();
         }
 
 		if (m_CurrentMonth == m_NextSacrifice) {
@@ -99,14 +93,14 @@ public class EventManager : MonoBehaviour
 			}
 
 			sacrificeView.SetSacrificeCount((int)m_MaxSacrifices);
-			sacrificeView.OnSacrifice += Sacrifice;
+			sacrificeView.OnSacrifice += StatsManagerObj.Sacrifice;
             sacrificeView.OnSacrificeFulfill += () => {
-                Pause(false);
-                CalculateSacrificePeriod();
                 m_NextSacrifice = (m_CurrentMonth + m_SacrificePeriod) % 12;
                 m_WindowsOpen--;
 				SacrificeResult sacrificeResult = CalculateSacrificeOutcome();
 				StatsManagerObj.ApplyModifier(sacrificeResult.Modifiers);
+				CalculateSacrificePeriod();
+				CalculateLimits();
 				UpdateResourceView();
 				SacrificeResultView resultView = Instantiate(SacrificeResult, Canvas).GetComponent<SacrificeResultView>();
 				m_WindowsOpen++;
@@ -128,8 +122,12 @@ public class EventManager : MonoBehaviour
 			RecruitMenuView recruitView = Instantiate(RecruitMenu, Canvas).GetComponent<RecruitMenuView>();
 			recruitView.SetRecruitCount((int)m_VillagerLimit - (int)StatsManagerObj.Villagers.Count);
 			recruitView.AddVillagerViews(arrivals);
-			recruitView.OnRecruit += Recruit;
-            recruitView.OnRecruitFulfill += () => { Pause(false); CheckVillageCapacity(); m_WindowsOpen--; };
+			recruitView.OnRecruit += StatsManagerObj.Recruit;
+            recruitView.OnRecruitFulfill += () => { CalculateNextArrival(); 
+			CalculateLimits();
+			CalculateSacrificePeriod();
+			UpdateResourceView(); 
+			m_WindowsOpen--; };
 		}
 	}
 
@@ -149,7 +147,7 @@ public class EventManager : MonoBehaviour
 		StatsManagerObj.Villagers.Add(villager1);
 		StatsManagerObj.Villagers.Add(villager2);
 
-		m_SacrificesValues = new List<Villager>();
+		StatsManagerObj.SacrificesValues = new List<Villager>();
 	}
 
 	Villager[] GenerateVillagers()
@@ -197,31 +195,10 @@ public class EventManager : MonoBehaviour
 		m_SacrificePeriod = Mathf.Min(12, SacrificePeriodBase + Mathf.Floor(StatsManagerObj.FaithProduction / 30f));
 	}
 
-	void CheckVillageCapacity()
+	void CalculateNextArrival()
 	{
-		//if (StatsManagerObj.Villagers.Count < m_VillagerLimit)
-			m_NextArrival = (m_CurrentMonth + ArrivalPeriod) % 12;
-		//else
-		//	m_NextArrival = 0;
+		m_NextArrival = (m_CurrentMonth + ArrivalPeriod) % 12;
 	}
-
-	void Recruit(Villager villager)
-	{
-		StatsManagerObj.Recruit(villager);
-
-		CheckVillageCapacity();
-        UpdateResourceView();
-    }
-
-	void Sacrifice(Villager villager)
-	{
-		m_SacrificesValues.Add(villager);
-
-		StatsManagerObj.Sacrifice(villager);
-
-		CalculateSacrificePeriod();
-        UpdateResourceView();
-    }
 
 	float[] CalculateSacrificeWorth(List<Villager> sacrifices)
 	{
@@ -242,7 +219,7 @@ public class EventManager : MonoBehaviour
 		float temp = 0f;
 		float[] sacrificesValues = new float[3];
 
-		sacrificesValues = CalculateSacrificeWorth(m_SacrificesValues);
+		sacrificesValues = CalculateSacrificeWorth(StatsManagerObj.SacrificesValues);
 
 		List<SacrificeResult> possibleResults = new List<SacrificeResult>();
 
@@ -278,9 +255,5 @@ public class EventManager : MonoBehaviour
 		int resultIndex = Random.Range(0, possibleResults.Count);
 
 		return possibleResults[resultIndex];
-	}
-
-	public void Pause(bool value){
-		//m_IsPaused = value;
 	}
 }
