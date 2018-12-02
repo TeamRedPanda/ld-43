@@ -105,6 +105,8 @@ public class EventManager : MonoBehaviour
                 m_NextSacrifice = (m_CurrentMonth + m_SacrificePeriod) % 12;
                 m_WindowsOpen--;
 				SacrificeResult sacrificeResult = CalculateSacrificeOutcome();
+				StatsManagerObj.ApplyModifier(sacrificeResult.Modifiers);
+				UpdateResourceView();
 				SacrificeResultView resultView = Instantiate(SacrificeResult, Canvas).GetComponent<SacrificeResultView>();
 				m_WindowsOpen++;
 				resultView.Initialize(sacrificeResult.Title, sacrificeResult.Icon, sacrificeResult.Text);
