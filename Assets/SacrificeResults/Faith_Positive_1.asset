@@ -16,7 +16,7 @@ MonoBehaviour:
   Text: 'The peace of God, which transcends all understanding, will guard your hearts
     and your minds.
 
-    <center><font color=green>2%</font> more food</center>'
+    <color=green>+2% food</color>'
   Modifier:
   - Type: 1
     Amount: 2

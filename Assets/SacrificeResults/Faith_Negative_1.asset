@@ -16,7 +16,7 @@ MonoBehaviour:
   Text: 'You''ve lost the path of the Church. Your fields shall give no fruit and
     the rivers and wells bring no water.
 
-    <center><font color=red>-5%</font> food</center>'
+    <color=red>-5% food</color>'
   Modifier:
   - Type: 1
     Amount: -5

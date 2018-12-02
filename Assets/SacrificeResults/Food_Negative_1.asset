@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Title: Food_Negative_1
   Icon: {fileID: 0}
-  Text: <center><font color=red>-5%</font> food</center>
+  Text: '<color=red>-5% food </color> '
   Modifier:
   - Type: 1
     Amount: -5

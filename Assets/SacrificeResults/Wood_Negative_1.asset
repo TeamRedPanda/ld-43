@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Title: Wood_Negative_1
   Icon: {fileID: 0}
-  Text: <center><font color=red>-2%</font> faith</center>
+  Text: <color=red>-2% faith</color>
   Modifier:
   - Type: 2
     Amount: -2
