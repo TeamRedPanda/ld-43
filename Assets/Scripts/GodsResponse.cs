@@ -15,6 +15,8 @@ public class GodsResponse : ScriptableObject
 {
     public string Title;
     public Image Icon;
+
+    [TextArea()]
     public string Text;
-    public ResourceModifier Modifier;
+    public ResourceModifier[] Modifier;
 }
