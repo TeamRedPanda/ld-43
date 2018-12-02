@@ -68,4 +68,24 @@ public class StatsManager
 		WoodProduction  = m_TotalWood  * WoodModifier;
 		FaithProduction = m_TotalFaith * FaithModifier;
 	}
+
+	public void ApplyModifier(ResourceModifier[] modifiers)
+	{
+		for (int i = 0; i < modifiers.Length; i++) {
+			switch (modifiers[i].Type)
+			{
+				case ResourceType.Food:
+					FoodModifier  += modifiers[i].Amount;
+					break;
+				case ResourceType.Wood:
+					WoodModifier  += modifiers[i].Amount;
+					break;
+				case ResourceType.Faith:
+					FaithModifier += modifiers[i].Amount;
+					break;
+			}
+		}
+
+		UpdateStats();
+	}
 }
