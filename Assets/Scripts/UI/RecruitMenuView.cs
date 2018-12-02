@@ -13,6 +13,9 @@ public class RecruitMenuView : MonoBehaviour
 
     private int m_Count;
 
+    private int m_RecruitCount;
+    private int m_CurrentRecruitCount;
+
     public event Action<Villager> OnRecruit;
     public event Action OnRecruitFulfill;
 
@@ -22,6 +25,9 @@ public class RecruitMenuView : MonoBehaviour
         VillagerView villagerView = Instantiate(m_VillagerViewPrefab, Content).GetComponent<VillagerView>();
         villagerView.SetStats((int)villager.WoodProduction, (int)villager.FoodProduction, (int)villager.FaithProduction);
         villagerView.OnActionButton += (i) => { Recruit(villager); };
+
+        if (m_RecruitCount == 0)
+            villagerView.DisableActionButton();
     }
 
     public void AddVillagerViews(Villager[] villagers)
@@ -30,12 +36,19 @@ public class RecruitMenuView : MonoBehaviour
             AddVillagerView(villager);
     }
 
+    public void SetRecruitCount(int count)
+    {
+        m_CurrentRecruitCount = 0;
+        m_RecruitCount = count;
+    }
+
     void Recruit(Villager villager)
     {
         OnRecruit?.Invoke(villager);
         m_Count--;
+        m_CurrentRecruitCount++;
 
-        if (m_Count == 0)
+        if (m_Count == 0 || m_CurrentRecruitCount == m_RecruitCount)
             CloseView();
     }
 

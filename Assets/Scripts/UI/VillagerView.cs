@@ -21,6 +21,16 @@ public class VillagerView : MonoBehaviour
         FaithText.text = faith.ToString();
     }
 
+    public void DisableActionButton()
+    {
+        GetComponentInChildren<Button>().interactable = false;
+    }
+
+    public void EnableActionButton()
+    {
+        GetComponentInChildren<Button>().interactable = false;
+    }
+
     public void Action()
     {
         OnActionButton?.Invoke(Index);
