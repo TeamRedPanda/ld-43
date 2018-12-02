@@ -66,8 +66,6 @@ public class EventManager : MonoBehaviour
         m_ResourceListView.UpdateFood((int)StatsManagerObj.FoodProduction, StatsManagerObj.FoodModifier);
         m_ResourceListView.UpdateFaith((int)StatsManagerObj.FaithProduction, StatsManagerObj.FaithModifier);
         m_ResourceListView.UpdatePopulation((int)StatsManagerObj.Villagers.Count, (int)m_VillagerLimit); // TODO: Wtf.
-    
-		Debug.Log("Update UI values.");
 	}
 
 	void Update()
