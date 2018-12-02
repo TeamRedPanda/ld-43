@@ -63,9 +63,9 @@ public class EventManager : MonoBehaviour
 
     void UpdateResourceView()
     {
-        m_ResourceListView.UpdateWood((int)StatsManagerObj.WoodProduction);
-        m_ResourceListView.UpdateFood((int)StatsManagerObj.FoodProduction);
-        m_ResourceListView.UpdateFaith((int)StatsManagerObj.FaithProduction);
+        m_ResourceListView.UpdateWood((int)StatsManagerObj.WoodProduction, StatsManagerObj.WoodModifier);
+        m_ResourceListView.UpdateFood((int)StatsManagerObj.FoodProduction, StatsManagerObj.FoodModifier);
+        m_ResourceListView.UpdateFaith((int)StatsManagerObj.FaithProduction, StatsManagerObj.FaithModifier);
         m_ResourceListView.UpdatePopulation((int)StatsManagerObj.Villagers.Count, (int)m_VillagerLimit); // TODO: Wtf.
     }
 

@@ -14,19 +14,19 @@ public class ResourceListView : MonoBehaviour
 
     static string[] s_MonthList = { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
 
-	public void UpdateWood(int amount)
+	public void UpdateWood(int amount, float modifier = 0)
     {
-        WoodText.text = amount.ToString();
+        WoodText.text = string.Format("{0} ({1}%)", amount, Mathf.RoundToInt((modifier - 1) * 100));
     }
 
-    public void UpdateFood(int amount)
+    public void UpdateFood(int amount, float modifier = 0)
     {
-        FoodText.text = amount.ToString();
+        FoodText.text = string.Format("{0} ({1}%)", amount, Mathf.RoundToInt((modifier - 1) * 100));
     }
 
-    public void UpdateFaith(int amount)
+    public void UpdateFaith(int amount, float modifier = 0)
     {
-        FaithText.text = amount.ToString();
+        FaithText.text = string.Format("{0} ({1}%)", amount, Mathf.RoundToInt((modifier - 1) * 100));
     }
 
     public void UpdatePopulation(int current, int max)

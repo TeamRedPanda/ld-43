@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public struct ResourceModifier
 {
     public ResourceType Type;
-    public int Amount;
+    public float Amount;
 }
 
 [CreateAssetMenu(menuName = "Village Gods/Create Sacrifice Result")]
