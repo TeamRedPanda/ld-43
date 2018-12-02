@@ -11,6 +11,7 @@ public class EventManager : MonoBehaviour
 	private float m_CurrentMonthTimeRemaining = 60;
 	private int m_CurrentMonth = 0;
     private int m_CurrentYear = 1501;
+    private int m_TotalMonths = 0;
 
 	public float SacrificePeriodBase = 6;
     private float m_SacrificePeriod;
@@ -79,6 +80,7 @@ public class EventManager : MonoBehaviour
                 m_CurrentYear++;
 
 			m_CurrentMonth = (m_CurrentMonth + 1) % 12;
+            m_TotalMonths++;
             m_ResourceListView.UpdateDate(m_CurrentMonth, m_CurrentYear); // TODO: WE NEED YEARS!!!!
 			m_CurrentMonthTimeRemaining = SecondsPerMonth;
         }
@@ -153,7 +155,7 @@ public class EventManager : MonoBehaviour
 
 	Villager[] GenerateVillagers()
 	{
-		int arrivalCount = Random.Range(1, 3);
+		int arrivalCount = Random.Range(2, 6);
 		List<Villager> arrivalsChoices = new List<Villager>();
 
 		for (int i = 0; i < arrivalCount; i++) {
@@ -187,7 +189,7 @@ public class EventManager : MonoBehaviour
 	void CalculateLimits()
 	{
 		m_VillagerLimit = Mathf.Min(StatsManagerObj.Houses * 4, Mathf.Floor(StatsManagerObj.FoodProduction * 3f / 8f));
-		m_MaxSacrifices = Mathf.Max(1, Mathf.Min(8, 1 + Mathf.Floor(StatsManagerObj.Villagers.Count / 4f)));
+		m_MaxSacrifices = Mathf.Max(1, Mathf.Min(8, 1 + Mathf.Floor(StatsManagerObj.Villagers.Count / 4f) + Mathf.Floor((float)m_TotalMonths / 24f)));
         
 	}
 
@@ -206,9 +208,9 @@ public class EventManager : MonoBehaviour
 		float[] values = new float[3];
 
 		for (int i = 0; i < sacrifices.Count; i++) {
-			values[0] += Mathf.Floor(sacrifices[i].FoodProduction  - 5);
-			values[1] += Mathf.Floor(sacrifices[i].WoodProduction  - 5);
-			values[2] += Mathf.Floor(sacrifices[i].FaithProduction - 5);
+			values[0] += Mathf.Floor(sacrifices[i].FoodProduction  - 6.5f);
+			values[1] += Mathf.Floor(sacrifices[i].WoodProduction  - 6.5f);
+			values[2] += Mathf.Floor(sacrifices[i].FaithProduction - 6.5f);
 		}
 
 		return values;
@@ -252,6 +254,8 @@ public class EventManager : MonoBehaviour
 					possibleResults = m_SacrificeManaging.FaithPositiveEffects;
 				break;
 		}
+
+        StatsManagerObj.SacrificesValues.Clear();
 
 		int resultIndex = Random.Range(0, possibleResults.Count);
 
