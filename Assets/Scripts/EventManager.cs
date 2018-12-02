@@ -116,7 +116,7 @@ public class EventManager : MonoBehaviour
 		}
 
 		if (StatsManagerObj.Villagers.Count <= 0) {
-			GameOverView gameOver = Instantiate(GameOver, Canvas).GetComponent<GameOverView>();
+			Instantiate(GameOver, Canvas).GetComponent<GameOverView>();
 			m_WindowsOpen++;
 		}
 
