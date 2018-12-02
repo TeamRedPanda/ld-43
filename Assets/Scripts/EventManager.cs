@@ -124,7 +124,7 @@ public class EventManager : MonoBehaviour
 			RecruitMenuView recruitView = Instantiate(RecruitMenu, Canvas).GetComponent<RecruitMenuView>();
 			recruitView.SetRecruitCount((int)m_VillagerLimit - (int)StatsManagerObj.Villagers.Count);
 			recruitView.AddVillagerViews(arrivals);
-			recruitView.OnRecruit += Recruit;
+			recruitView.OnRecruit += StatsManagerObj.Recruit;
             recruitView.OnRecruitFulfill += () => { CalculateNextArrival(); UpdateResourceView(); m_WindowsOpen--; };
 		}
 	}
@@ -197,11 +197,6 @@ public class EventManager : MonoBehaviour
 	{
 		m_NextArrival = (m_CurrentMonth + ArrivalPeriod) % 12;
 	}
-
-	void Recruit(Villager villager)
-	{
-		StatsManagerObj.Recruit(villager);
-    }
 
 	void Sacrifice(Villager villager)
 	{
