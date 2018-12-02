@@ -14,6 +14,6 @@ MonoBehaviour:
   Title: Food_Negative_1
   Icon: {fileID: 0}
   Text: '<color=red>-5% food </color> '
-  Modifier:
+  Modifiers:
   - Type: 1
     Amount: -5

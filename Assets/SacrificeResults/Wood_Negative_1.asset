@@ -14,6 +14,6 @@ MonoBehaviour:
   Title: Wood_Negative_1
   Icon: {fileID: 0}
   Text: <color=red>-2% faith</color>
-  Modifier:
+  Modifiers:
   - Type: 2
     Amount: -2

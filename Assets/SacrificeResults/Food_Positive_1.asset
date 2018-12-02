@@ -16,7 +16,7 @@ MonoBehaviour:
   Text: '<color=green>+2% food</color>
 
     <color=green>+1% wood</color>'
-  Modifier:
+  Modifiers:
   - Type: 1
     Amount: 2
   - Type: 1

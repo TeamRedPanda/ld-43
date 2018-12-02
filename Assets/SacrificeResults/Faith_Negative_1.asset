@@ -17,6 +17,6 @@ MonoBehaviour:
     the rivers and wells bring no water.
 
     <color=red>-5% food</color>'
-  Modifier:
+  Modifiers:
   - Type: 1
     Amount: -5

@@ -17,6 +17,6 @@ MonoBehaviour:
     and your minds.
 
     <color=green>+2% food</color>'
-  Modifier:
+  Modifiers:
   - Type: 1
     Amount: 2
