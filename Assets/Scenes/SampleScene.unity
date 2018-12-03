@@ -17682,6 +17682,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VillagerPrefabs:
   - {fileID: 1159134801673204, guid: 65dbbd0bf12f8c74294882cb108005a8, type: 2}
+  - {fileID: 1953476315991648, guid: a2840c3f0922b164c9b9905f8630d974, type: 2}
+  - {fileID: 1014489932185002, guid: c1db1182bf37fe14a92c7a96303ad35b, type: 2}
   EmptyPoints:
   - {fileID: 779788073}
   - {fileID: 154170001}
@@ -29366,7 +29368,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1885019560}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 24.2, y: 6.08, z: 22.6}
+  m_LocalPosition: {x: 24.2, y: 6.2, z: 22.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1683167091}
