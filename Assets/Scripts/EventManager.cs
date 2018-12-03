@@ -211,7 +211,9 @@ public class EventManager : MonoBehaviour
 			for (int i = 0; i < overPopulation; i++)
 				StatsManagerObj.Villagers.RemoveAt(0);
 
-			m_WindowsOpen++;
+            FindObjectOfType<VillagerGraphics>().Despawn(overPopulation);
+
+            m_WindowsOpen++;
 
 			OverPopulationView overPopulationView = Instantiate(OverPopulation, Canvas).GetComponent<OverPopulationView>();
 			overPopulationView.Count = overPopulation;
