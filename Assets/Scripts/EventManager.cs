@@ -47,7 +47,7 @@ public class EventManager : MonoBehaviour
 	{
 		m_SacrificeManaging = this.GetComponent<SacrificeOutcome>();
 
-		StatsManagerObj = new StatsManager();
+		StatsManagerObj = new StatsManager(FindObjectOfType<VillagerGraphics>());
         StatsManagerObj.OnStatsChanged += UpdateResourceView;
 		GetInitialState();
 

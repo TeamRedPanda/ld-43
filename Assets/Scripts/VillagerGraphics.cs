@@ -23,6 +23,9 @@ public class VillagerGraphics : MonoBehaviour
 
     public void Spawn()
     {
+        if (EmptyPoints.Count == 0)
+            return;
+
         int index = Random.Range(0, EmptyPoints.Count);
         GameObject parent = EmptyPoints[index];
         EmptyPoints.RemoveAt(index);
@@ -32,11 +35,14 @@ public class VillagerGraphics : MonoBehaviour
         GameObject prefab = VillagerPrefabs[prefabIndex];
 
         Quaternion rotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
-        Instantiate(prefab, Vector3.zero, rotation, parent.transform);
+        Instantiate(prefab, parent.transform.position, rotation, parent.transform);
     }
 
     public void Despawn()
     {
+        if (UsedPoints.Count == 0)
+            return;
+
         int index = Random.Range(0, UsedPoints.Count);
 
         // Remove the villager
