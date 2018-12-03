@@ -23,6 +23,7 @@ public class EventManager : MonoBehaviour
 	public GameObject GameOver;
     public GameObject RecruitMenu;
 	public GameObject SacrificeMenu;
+	public GameObject OverPopulation;
 	public GameObject SacrificeResult;
 	public Transform Canvas;
 	
@@ -199,7 +200,11 @@ public class EventManager : MonoBehaviour
 			for (int i = 0; i < overPopulation; i++)
 				StatsManagerObj.Villagers.RemoveAt(0);
 
-			Debug.Log(overPopulation + " villagers were kicked out!");
+			m_WindowsOpen++;
+
+			OverPopulationView overPopulationView = Instantiate(OverPopulation, Canvas).GetComponent<OverPopulationView>();
+			overPopulationView.Count = overPopulation;
+			overPopulationView.OnWindowClose += () => m_WindowsOpen--;
 		}
 	}
 
