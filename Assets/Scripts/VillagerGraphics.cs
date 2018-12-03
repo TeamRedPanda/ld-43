@@ -38,6 +38,12 @@ public class VillagerGraphics : MonoBehaviour
         Instantiate(prefab, parent.transform.position, rotation, parent.transform);
     }
 
+    public void Despawn(int amount)
+    {
+        for (int i = 0; i < amount; i++)
+            Despawn();
+    }
+
     public void Despawn()
     {
         if (UsedPoints.Count == 0)

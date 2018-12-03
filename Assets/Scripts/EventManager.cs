@@ -20,6 +20,8 @@ public class EventManager : MonoBehaviour
 	public float ArrivalPeriod = 3;
 	private float m_NextArrival;
 
+    private bool m_IsShowingTutorial = true;
+
 	public GameObject GameOver;
     public GameObject RecruitMenu;
 	public GameObject SoundManager;
@@ -74,7 +76,7 @@ public class EventManager : MonoBehaviour
 
 	void Update()
 	{
-        if (m_IsPaused)
+        if (m_IsPaused || m_IsShowingTutorial)
             return;
 
 		m_CurrentMonthTimeRemaining -= Time.deltaTime;
@@ -138,6 +140,11 @@ public class EventManager : MonoBehaviour
             };
 		}
 	}
+
+    public void CompleteTutorial()
+    {
+        m_IsShowingTutorial = false;
+    }
 
 	void GetInitialState()
 	{
@@ -204,7 +211,9 @@ public class EventManager : MonoBehaviour
 			for (int i = 0; i < overPopulation; i++)
 				StatsManagerObj.Villagers.RemoveAt(0);
 
-			m_WindowsOpen++;
+            FindObjectOfType<VillagerGraphics>().Despawn(overPopulation);
+
+            m_WindowsOpen++;
 
 			OverPopulationView overPopulationView = Instantiate(OverPopulation, Canvas).GetComponent<OverPopulationView>();
 			overPopulationView.Count = overPopulation;
