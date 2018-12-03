@@ -3,7 +3,7 @@ A game where you must sacrifice your people to make the Gods happy, while still 
 Make the Gods happy and they'll help you, fail to please and suffer their wrath.
 
 Made for Ludum Dare 43.
-https://ldjam.com/events/ludum-dare/43/$125118
+https://ldjam.com/events/ludum-dare/43/villages-gods
 
 Song Credits:  
 Main Theme - Town 3 by Alex McCulloch (https://opengameart.org/content/town-3)  
