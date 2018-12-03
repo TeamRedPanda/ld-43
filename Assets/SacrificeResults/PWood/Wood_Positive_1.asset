@@ -13,9 +13,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Title: Wood_Positive_1
   Icon: {fileID: 0}
-  Text: '<color=green>+2% food</color>
+  Text: 'A fairy was spotted at the famrs.
 
-    <color=green>+1% faith</color>'
+    <color=green>+2% food +1% faith</color>'
   Modifiers:
   - Type: 1
     Amount: 2

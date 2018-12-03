@@ -13,7 +13,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Title: Food_Negative_1
   Icon: {fileID: 0}
-  Text: '<color=red>-5% food </color> '
+  Text: 'Storm seaons is upon us! The heavy rain and strong wind affected the farms.
+
+    <color=red>-5% food </color> '
   Modifiers:
   - Type: 1
     Amount: -5
