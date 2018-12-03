@@ -203,7 +203,7 @@ public class EventManager : MonoBehaviour
 	void CalculateLimits()
 	{
 		m_VillagerLimit = Mathf.Min(StatsManagerObj.Houses * 4, Mathf.Floor(StatsManagerObj.FoodProduction * 3f / 8f));
-		m_MaxSacrifices = Mathf.Max(1, Mathf.Min(8, 1 + Mathf.Floor(StatsManagerObj.Villagers.Count / 4f) + Mathf.Floor((float)m_TotalMonths / 24f)));
+		m_MaxSacrifices = Mathf.Max(1, Mathf.Min(8, 1 + Mathf.Floor((float)m_TotalMonths / 12f)));
 
 		if (StatsManagerObj.Villagers.Count > m_VillagerLimit) {
 			int overPopulation = StatsManagerObj.Villagers.Count - (int)m_VillagerLimit;
