@@ -11,6 +11,8 @@ public class SacrificeOutcome : MonoBehaviour {
 	public List<SacrificeResult> FaithPositiveEffects;
 	public List<SacrificeResult> FaithNegativeEffects;
 
+	public List<SacrificeResult> PenaltyEffects;
+
 	// Use this for initialization
 	void Start () {
 		
