@@ -22,6 +22,7 @@ public class EventManager : MonoBehaviour
 
 	public GameObject GameOver;
     public GameObject RecruitMenu;
+	public GameObject SoundManager;
 	public GameObject SacrificeMenu;
 	public GameObject OverPopulation;
 	public GameObject SacrificeResult;
@@ -87,6 +88,7 @@ public class EventManager : MonoBehaviour
 			m_CurrentMonthTimeRemaining = SecondsPerMonth;
 
 			if (StatsManagerObj.Villagers.Count <= 0) {
+				SoundManager.GetComponent<AudioSource>().volume = 0;
 				Instantiate(GameOver, Canvas).GetComponent<GameOverView>();
 				m_WindowsOpen++;
 			}
