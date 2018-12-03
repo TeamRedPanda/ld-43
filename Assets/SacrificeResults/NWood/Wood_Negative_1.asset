@@ -13,7 +13,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Title: Wood_Negative_1
   Icon: {fileID: 0}
-  Text: <color=red>-2% faith</color>
+  Text: 'Kids broke the church''s window while playing with a ball.
+
+    <color=red>-2% faith</color>'
   Modifiers:
   - Type: 2
     Amount: -2

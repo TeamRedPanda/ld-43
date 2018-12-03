@@ -13,9 +13,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Title: God's Wrath
   Icon: {fileID: 0}
-  Text: "You failed to achieve the requested sacrifices. The God's wrath will descend
-    upon the town.\n\n<color=red>-20% wood </color>\n<color=red>-20% food </color>
-    \n<color=red>-20% faith </color>  "
+  Text: 'You failed to achieve the requested sacrifices. The God''s wrath will descend
+    upon the town.
+
+    <color=red>-20% wood, food and faith </color>'
   Modifiers:
   - Type: 1
     Amount: -20
