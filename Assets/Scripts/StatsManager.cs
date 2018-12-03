@@ -86,8 +86,8 @@ public class StatsManager
 				case ResourceType.Food:
 					FoodModifier  += modifiers[i].Amount * 0.01f;
 
-					if (FoodModifier <= -1f) {
-						FoodModifier = -1f;
+					if (FoodModifier <= 0f) {
+						FoodModifier = 0f;
 						break;
 					}
 
@@ -95,8 +95,8 @@ public class StatsManager
 				case ResourceType.Wood:
 					WoodModifier  += modifiers[i].Amount * 0.01f;
 
-					if (WoodModifier <= -1f) {
-						WoodModifier = -1f;
+					if (WoodModifier <= 0f) {
+						WoodModifier = 0f;
 						break;
 					}
 
@@ -104,8 +104,8 @@ public class StatsManager
 				case ResourceType.Faith:
 					FaithModifier += modifiers[i].Amount * 0.01f;
 
-					if (FaithModifier <= -1f) {
-						FaithModifier = -1f;
+					if (FaithModifier <= 0f) {
+						FaithModifier = 0f;
 						break;
 					}
 
