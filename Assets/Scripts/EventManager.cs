@@ -123,7 +123,7 @@ public class EventManager : MonoBehaviour
             sacrificeView.OnSacrificeFulfill += () => {
                 m_NextSacrifice = (m_CurrentMonth + m_SacrificePeriod) % 12;
                 m_WindowsOpen--;
-				SacrificeResult sacrificeResult = CalculateSacrificeOutcome();
+				SacrificeResult sacrificeResult = CalculateSacrificeOutcome(sacrificeView.GetSacrificeCountLeft());
 				StatsManagerObj.ApplyModifier(sacrificeResult.Modifiers);
 				CalculateSacrificePeriod();
 				CalculateLimits();
@@ -226,8 +226,18 @@ public class EventManager : MonoBehaviour
 		return values;
 	}
 
-	SacrificeResult CalculateSacrificeOutcome()
+	SacrificeResult CalculateSacrificeOutcome(int penaltyValue)
 	{
+		int resultIndex = 0;
+
+		if (penaltyValue > 0) {
+			List<SacrificeResult> possiblePenalties = m_SacrificeManaging.PenaltyEffects;
+
+			resultIndex = Random.Range(0, possiblePenalties.Count);
+
+			return possiblePenalties[resultIndex];
+		}
+
 		int index = 0;
 		float temp = 0f;
 		float[] sacrificesValues = new float[3];
@@ -267,7 +277,7 @@ public class EventManager : MonoBehaviour
 
         StatsManagerObj.SacrificesValues.Clear();
 
-		int resultIndex = Random.Range(0, possibleResults.Count);
+		resultIndex = Random.Range(0, possibleResults.Count);
 
 		return possibleResults[resultIndex];
 	}

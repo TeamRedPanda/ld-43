@@ -13183,6 +13183,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 35c35d73b1c000c469a3a80ef31666ad, type: 2}
   FaithNegativeEffects:
   - {fileID: 11400000, guid: 12872cc952883c547a4148d6540aa4e8, type: 2}
+  PenaltyEffects:
+  - {fileID: 11400000, guid: 2ac57c998e979c046bdf02638acad459, type: 2}
 --- !u!1 &1019351289
 GameObject:
   m_ObjectHideFlags: 0
