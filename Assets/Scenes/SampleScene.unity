@@ -13143,6 +13143,8 @@ MonoBehaviour:
     type: 2}
   SacrificeMenu: {fileID: 1128501592346736, guid: e1cfd34472a823149b19205e7add82db,
     type: 2}
+  OverPopulation: {fileID: 1540905360890652, guid: cb9387a9560373b4ca40d85183094434,
+    type: 2}
   SacrificeResult: {fileID: 1542186901726240, guid: af44a2b8da8f7244e9cded0117079aa5,
     type: 2}
   Canvas: {fileID: 1867408339}
