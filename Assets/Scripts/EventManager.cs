@@ -144,13 +144,13 @@ public class EventManager : MonoBehaviour
 		Villager villager1 = new Villager();
 		Villager villager2 = new Villager();
 
-		villager1.FoodProduction  = 5;
-		villager1.WoodProduction  = 5;
-		villager1.FaithProduction = 5;
+		villager1.FoodProduction  = Random.Range(5, 9);
+		villager1.WoodProduction  = Random.Range(5, 9);
+        villager1.FaithProduction = Random.Range(5, 9);
 
-		villager2.FoodProduction  = 6;
-		villager2.WoodProduction  = 6;
-		villager2.FaithProduction = 6;
+        villager2.FoodProduction  = Random.Range(5, 9);
+        villager2.WoodProduction  = Random.Range(5, 9);
+        villager2.FaithProduction = Random.Range(5, 9);
 
         StatsManagerObj.Recruit(villager1);
         StatsManagerObj.Recruit(villager2);
