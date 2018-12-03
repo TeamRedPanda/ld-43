@@ -9,18 +9,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1dce168a7fc5e5d468f870c7f748b136, type: 3}
-  m_Name: Penalty_4
+  m_Name: Penalty_5
   m_EditorClassIdentifier: 
   Title: God's Wrath
   Icon: {fileID: 0}
-  Text: 'Counting is hard sometimes, even with the UI showing how many you need to
-    sacrifice.
+  Text: 'You missed some sacrifices this month. I''m taking 10 beavers, 25 trees,
+    2 relics and some apples.
 
-    <color=red>-5% wood and food, -7% faith</color>  '
+    <color=red>-8% wood and food, -5% faith</color>  '
   Modifiers:
   - Type: 1
-    Amount: -5
+    Amount: -8
   - Type: 0
-    Amount: -5
+    Amount: -8
   - Type: 2
-    Amount: -7
+    Amount: -5

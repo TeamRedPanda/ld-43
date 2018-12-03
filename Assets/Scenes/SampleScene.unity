@@ -27720,18 +27720,45 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FoodPositiveEffects:
   - {fileID: 11400000, guid: d609a563d13619b40aabf62b37e1a939, type: 2}
+  - {fileID: 11400000, guid: 7c97faff20d9cb245998bb1b34ca87a4, type: 2}
+  - {fileID: 11400000, guid: 731be8e9f85f7a94e8157878186fb2c6, type: 2}
+  - {fileID: 11400000, guid: cf8717f7654cdf94391f6b6a46ed1108, type: 2}
+  - {fileID: 11400000, guid: c0cb1328e5527b64c8ab346f86f400b8, type: 2}
   FoodNegativeEffects:
   - {fileID: 11400000, guid: f3c5c19a3e0c51b44a5fe13fb21fbbd4, type: 2}
+  - {fileID: 11400000, guid: 5c032ed744643f54ca028881d26ec0dc, type: 2}
+  - {fileID: 11400000, guid: e15a474d1b16e1443a8f1c9f2faed9f1, type: 2}
+  - {fileID: 11400000, guid: c68d62c0e1ff34645996dc8427503a9d, type: 2}
   WoodPositiveEffects:
   - {fileID: 11400000, guid: 831781a8503ac86489f4066b41e47d18, type: 2}
+  - {fileID: 11400000, guid: 16b8f23e3f0d4d842a58f55bc88e448e, type: 2}
+  - {fileID: 11400000, guid: 8f5bb13dd39b94f42bfd242b69238fd0, type: 2}
+  - {fileID: 11400000, guid: 8ff54367332e9904cb8a4f642b2aeb91, type: 2}
+  - {fileID: 11400000, guid: 08b6388b6d3d9b441bcf9bcf15ce91eb, type: 2}
   WoodNegativeEffects:
+  - {fileID: 11400000, guid: 6bd115ae39430274d84b34bf4d1f308d, type: 2}
+  - {fileID: 11400000, guid: a23cd1bbb84c89a469c1293dc4a48110, type: 2}
+  - {fileID: 11400000, guid: 5fe72e29341969046a501a44dcd8a758, type: 2}
   - {fileID: 11400000, guid: 589e7edad6d85014eb6cc17869c07425, type: 2}
   FaithPositiveEffects:
   - {fileID: 11400000, guid: 35c35d73b1c000c469a3a80ef31666ad, type: 2}
+  - {fileID: 11400000, guid: 0cd55ec7f57cca04a9eb4c332a47c081, type: 2}
+  - {fileID: 11400000, guid: 1b97377ee2eb909488b4992ee9ef6193, type: 2}
+  - {fileID: 11400000, guid: 8e4cd91081f8fcb4c9293778b8854458, type: 2}
+  - {fileID: 11400000, guid: 1da3139bb7b1df6489a20fb77b25c2e9, type: 2}
   FaithNegativeEffects:
   - {fileID: 11400000, guid: 12872cc952883c547a4148d6540aa4e8, type: 2}
+  - {fileID: 11400000, guid: f2781ec455d6237479c07e45217cf1b3, type: 2}
+  - {fileID: 11400000, guid: 3610b96235468664f854eab0f357166b, type: 2}
+  - {fileID: 11400000, guid: fac35699f73a6604fb76dcdf2e9d56cc, type: 2}
+  - {fileID: 11400000, guid: 86ef9f17f644a3c42ac70caa86519076, type: 2}
+  - {fileID: 11400000, guid: 0a89cfe14b614c44eb2488767ae23b65, type: 2}
   PenaltyEffects:
   - {fileID: 11400000, guid: 2ac57c998e979c046bdf02638acad459, type: 2}
+  - {fileID: 11400000, guid: a3a7fc1d36b9cc044b9244d13569ce74, type: 2}
+  - {fileID: 11400000, guid: 606fd207110d7b44b8a9f2b3be306956, type: 2}
+  - {fileID: 11400000, guid: 511993ac8286d3f448d7146ff9d67d60, type: 2}
+  - {fileID: 11400000, guid: 764591a45011ea746bc82ae3621bb840, type: 2}
 --- !u!1 &1011201756
 GameObject:
   m_ObjectHideFlags: 0
