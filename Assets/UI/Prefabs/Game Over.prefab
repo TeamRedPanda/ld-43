@@ -336,6 +336,7 @@ MonoBehaviour:
   FlavourTexts:
   - It's not true your village has no future. Its only changing its field to archaeology.
   - Not quite like the decline of Rome but you can feel sad.
+  - Even in ruins that beautiful bridge lives ~~
 --- !u!114 &114616858317439354
 MonoBehaviour:
   m_ObjectHideFlags: 1
