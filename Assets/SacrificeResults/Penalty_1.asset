@@ -11,13 +11,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dce168a7fc5e5d468f870c7f748b136, type: 3}
   m_Name: Penalty_1
   m_EditorClassIdentifier: 
-  Title: Penalty_1
+  Title: God's Wrath
   Icon: {fileID: 0}
-  Text: 
+  Text: "You failed to achieve the requested sacrifices. The God's wrath will descend
+    upon the town.\n\n<color=red>-20% wood </color>\n<color=red>-20% food </color>
+    \n<color=red>-20% faith </color>  "
   Modifiers:
   - Type: 1
-    Amount: -10
+    Amount: -20
   - Type: 0
-    Amount: -10
+    Amount: -20
   - Type: 2
-    Amount: -10
+    Amount: -20
