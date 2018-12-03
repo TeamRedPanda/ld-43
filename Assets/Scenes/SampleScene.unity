@@ -17555,7 +17555,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5161b75f83f515e458aaf4bb7f763479, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VillagerPrefabs: []
+  VillagerPrefabs:
+  - {fileID: 1159134801673204, guid: 65dbbd0bf12f8c74294882cb108005a8, type: 2}
   EmptyPoints:
   - {fileID: 779788073}
   - {fileID: 154170001}
