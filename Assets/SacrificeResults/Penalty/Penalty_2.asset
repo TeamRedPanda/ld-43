@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dce168a7fc5e5d468f870c7f748b136, type: 3}
+  m_Name: Penalty_2
+  m_EditorClassIdentifier: 
+  Title: God's Wrath
+  Icon: {fileID: 0}
+  Text: 'The Gods accountant is not happy about this month''s sacrifices. They demanded
+    an increase to the wonderful bridge''s tax.
+
+    <color=red>-10% wood, food and faith</color>  '
+  Modifiers:
+  - Type: 1
+    Amount: -10
+  - Type: 0
+    Amount: -10
+  - Type: 2
+    Amount: -10

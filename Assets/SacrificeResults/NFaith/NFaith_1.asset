@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dce168a7fc5e5d468f870c7f748b136, type: 3}
+  m_Name: NFaith_1
+  m_EditorClassIdentifier: 
+  Title: 
+  Icon: {fileID: 0}
+  Text: 'Strong storms rampage the city. The villagers faith decrease.
+
+    <color=red>-4% faith</color>'
+  Modifiers:
+  - Type: 2
+    Amount: -4
