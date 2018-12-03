@@ -11,7 +11,7 @@ public class VillagerGraphics : MonoBehaviour
     private List<GameObject> UsedPoints;
 
     // Use this for initialization
-    void Start()
+    void Awake()
     {
         UsedPoints = new List<GameObject>();
 

@@ -152,10 +152,12 @@ public class EventManager : MonoBehaviour
 		villager2.WoodProduction  = 6;
 		villager2.FaithProduction = 6;
 
-		StatsManagerObj.Villagers.Add(villager1);
-		StatsManagerObj.Villagers.Add(villager2);
+        StatsManagerObj.Recruit(villager1);
+        StatsManagerObj.Recruit(villager2);
+        //StatsManagerObj.Villagers.Add(villager1);
+        //StatsManagerObj.Villagers.Add(villager2);
 
-		StatsManagerObj.SacrificesValues = new List<Villager>();
+        StatsManagerObj.SacrificesValues = new List<Villager>();
 	}
 
 	Villager[] GenerateVillagers()
