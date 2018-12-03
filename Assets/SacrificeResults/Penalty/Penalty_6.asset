@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Title: 
   Icon: {fileID: 0}
-  Text: 'The sacrifice was so insulting that is generated a giant tornado!
+  Text: 'The sacrifice was so insulting that it generated a giant tornado!
 
     <color=red>-12% wood and food</color>  '
   Modifiers:
