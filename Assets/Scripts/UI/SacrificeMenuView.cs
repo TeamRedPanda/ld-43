@@ -28,9 +28,9 @@ public class SacrificeMenuView : MonoBehaviour
 
     public void SetSacrificeCount(int count)
     {
-        if (m_CurrentSacrificeCount == 0)
+        /* if (m_CurrentSacrificeCount == 0)
             this.GetComponentInChildren<Button>().interactable = false;
-            
+        */  
         m_SacrificeCount = count;
         SacrificeCountText.text = string.Format("{0}/{1}", m_CurrentSacrificeCount, m_SacrificeCount);
     }
