@@ -15,10 +15,8 @@ MonoBehaviour:
   Icon: {fileID: 0}
   Text: 'The Gods graced the village with a new invisible mill!
 
-    <color=green>+3% wood, food and faith</color>'
+    <color=green>+3% food and faith</color>'
   Modifiers:
-  - Type: 0
-    Amount: 3
   - Type: 1
     Amount: 3
   - Type: 2
