@@ -35,6 +35,11 @@ public class SacrificeMenuView : MonoBehaviour
         SacrificeCountText.text = string.Format("{0}/{1}", m_CurrentSacrificeCount, m_SacrificeCount);
     }
 
+    public int GetSacrificeCountLeft()
+    {
+        return m_SacrificeCount - m_CurrentSacrificeCount;
+    }
+
     void Sacrifice(Villager villager)
     {
         m_CurrentSacrificeCount++;
