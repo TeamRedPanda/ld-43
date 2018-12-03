@@ -23,16 +23,21 @@ public class StatsManager
 	float m_TotalWood = 0.0f;
 	float m_TotalFaith = 0.0f;
 
+    VillagerGraphics m_VillagerGraphics;
+
     public event Action OnStatsChanged;
 
-	public StatsManager()
+	public StatsManager(VillagerGraphics villagerGraphics)
 	{
 		Villagers = new List<Villager>();
-	}
+        m_VillagerGraphics = villagerGraphics;
+
+    }
 
     public void Recruit(Villager villager)
     {
         Villagers.Add(villager);
+        m_VillagerGraphics.Spawn();
         UpdateStats();
         OnStatsChanged?.Invoke();
     }
@@ -42,6 +47,7 @@ public class StatsManager
 		SacrificesValues.Add(villager);
 
         Villagers.Remove(villager);
+        m_VillagerGraphics.Despawn();
         UpdateStats();
         OnStatsChanged?.Invoke();
     }
