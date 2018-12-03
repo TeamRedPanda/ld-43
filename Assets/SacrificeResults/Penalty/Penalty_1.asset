@@ -14,7 +14,7 @@ MonoBehaviour:
   Title: God's Wrath
   Icon: {fileID: 0}
   Text: 'You failed to achieve the requested sacrifices. The God''s wrath will descend
-    upon the town.
+    upon the village.
 
     <color=red>-20% wood, food and faith </color>'
   Modifiers:

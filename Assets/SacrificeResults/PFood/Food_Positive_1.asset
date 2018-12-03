@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Title: Food_Positive_1
   Icon: {fileID: 0}
-  Text: 'A caravan has blessed the town with free goods.
+  Text: 'A caravan has blessed the village with free goods.
 
     <color=green>+2% wood +3% food</color>'
   Modifiers:
