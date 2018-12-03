@@ -20,6 +20,8 @@ public class EventManager : MonoBehaviour
 	public float ArrivalPeriod = 3;
 	private float m_NextArrival;
 
+    private bool m_IsShowingTutorial = true;
+
 	public GameObject GameOver;
     public GameObject RecruitMenu;
 	public GameObject SoundManager;
@@ -74,7 +76,7 @@ public class EventManager : MonoBehaviour
 
 	void Update()
 	{
-        if (m_IsPaused)
+        if (m_IsPaused || m_IsShowingTutorial)
             return;
 
 		m_CurrentMonthTimeRemaining -= Time.deltaTime;
@@ -138,6 +140,11 @@ public class EventManager : MonoBehaviour
             };
 		}
 	}
+
+    public void CompleteTutorial()
+    {
+        m_IsShowingTutorial = false;
+    }
 
 	void GetInitialState()
 	{
