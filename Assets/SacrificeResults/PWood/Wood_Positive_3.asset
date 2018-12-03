@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Wood_Positive_3
   m_EditorClassIdentifier: 
   Title: 
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: 0f72801031b9d2046b5877be1d256bca, type: 3}
   Text: 'An old building has fallen! The villagers managed to salvage some materials.
 
     <color=green>+3% wood</color>'

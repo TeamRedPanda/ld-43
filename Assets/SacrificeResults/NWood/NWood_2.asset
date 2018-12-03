@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: NWood_2
   m_EditorClassIdentifier: 
   Title: Wood_Negative_1
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: d8a3ddf0a297b5c4ab47b74dc6b90959, type: 3}
   Text: 'The river''s water level is increasing rapidly, we need to create a dam.
     Fast, hire some beavers!
 

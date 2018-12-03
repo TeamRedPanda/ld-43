@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Faith_Positive_2
   m_EditorClassIdentifier: 
   Title: 
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: 0f72801031b9d2046b5877be1d256bca, type: 3}
   Text: 'The villagers discovered a sacred relic hidden in the woods.
 
     <color=green>+6% faith</color>'

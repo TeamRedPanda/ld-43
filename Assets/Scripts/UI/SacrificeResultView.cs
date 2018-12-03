@@ -12,10 +12,10 @@ public class SacrificeResultView : MonoBehaviour
 
     public event Action OnWindowClose;
 
-    public void Initialize(string title, Image icon, string text)
+    public void Initialize(string title, Sprite icon, string text)
     {
         Title.text = title;
-        Icon = icon;
+        Icon.sprite = icon;
         Description.text = text;
     }
 

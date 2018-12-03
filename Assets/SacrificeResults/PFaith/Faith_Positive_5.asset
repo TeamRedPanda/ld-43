@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Faith_Positive_5
   m_EditorClassIdentifier: 
   Title: 
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: 0f72801031b9d2046b5877be1d256bca, type: 3}
   Text: 'Free bread and wine at the local church! Get it while you can!
 
     <color=green>+2% food +1% faith</color>'

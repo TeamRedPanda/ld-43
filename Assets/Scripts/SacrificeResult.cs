@@ -14,7 +14,7 @@ public struct ResourceModifier
 public class SacrificeResult : ScriptableObject
 {
     public string Title;
-    public Image Icon;
+    public Sprite Icon;
 
     [TextArea()]
     public string Text;

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Wood_Positive_1
   m_EditorClassIdentifier: 
   Title: Wood_Positive_1
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: 0f72801031b9d2046b5877be1d256bca, type: 3}
   Text: 'A fairy was spotted at the village mill.
 
     <color=green>+2% food +1% faith</color>'

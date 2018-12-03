@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Faith_Positive_1
   m_EditorClassIdentifier: 
   Title: The Prodigal Son
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: 0f72801031b9d2046b5877be1d256bca, type: 3}
   Text: 'The peace of God, which transcends all understanding, will guard your hearts
     and your minds.
 

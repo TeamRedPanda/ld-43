@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Faith_Negative_1
   m_EditorClassIdentifier: 
   Title: Heat
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: d8a3ddf0a297b5c4ab47b74dc6b90959, type: 3}
   Text: 'You''ve lost the path of the Church. Your fields shall give no fruit and
     the rivers and wells bring no water.
 

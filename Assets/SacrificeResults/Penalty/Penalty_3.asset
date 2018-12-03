@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Penalty_3
   m_EditorClassIdentifier: 
   Title: God's Wrath
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: d8a3ddf0a297b5c4ab47b74dc6b90959, type: 3}
   Text: 'Its all fun and games until some random village defies the God''s will of
     sacrifice.
 

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Food_Positive_5
   m_EditorClassIdentifier: 
   Title: 
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: 0f72801031b9d2046b5877be1d256bca, type: 3}
   Text: 'The rectangular apple trees gave new fruits!
 
     <color=green>+1% food</color>'

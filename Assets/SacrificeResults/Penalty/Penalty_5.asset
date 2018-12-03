@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Penalty_5
   m_EditorClassIdentifier: 
   Title: God's Wrath
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: d8a3ddf0a297b5c4ab47b74dc6b90959, type: 3}
   Text: 'You missed some sacrifices this month. I''m taking 10 beavers, 25 trees,
     2 relics and some apples.
 

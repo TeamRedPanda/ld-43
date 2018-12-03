@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: NFaith_3
   m_EditorClassIdentifier: 
   Title: 
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: d8a3ddf0a297b5c4ab47b74dc6b90959, type: 3}
   Text: 'Its been ages since the last rain. The fields produce no food and the trees
     are dying without water.
 
